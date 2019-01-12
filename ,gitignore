@@ -1,0 +1,5 @@
+# ignore fileextensions
+*.jwe
+
+# ignore maps
+private
