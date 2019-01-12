@@ -1,4 +1,4 @@
-# vscode9eR$d23_VgTy23i4
+# je-python
 
 This is a test directory for beginners.
 
