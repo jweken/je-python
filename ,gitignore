@@ -2,4 +2,4 @@
 *.jwe
 
 # ignore maps
-/private
+**/private/*
