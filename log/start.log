@@ -1,0 +1,53 @@
+Disassembly of squaredemo:
+ 11           0 LOAD_GLOBAL              0 (print)
+              2 LOAD_CONST               1 ('\nde naam van het bestand: ')
+              4 LOAD_GLOBAL              1 (__file__)
+              6 LOAD_CONST               2 ('\n')
+              8 CALL_FUNCTION            3
+             10 POP_TOP
+
+ 12          12 BUILD_LIST               0
+             14 STORE_FAST               1 (squares)
+
+ 13          16 LOAD_FAST                0 (arg)
+             18 LOAD_CONST               3 (None)
+             20 COMPARE_OP               3 (!=)
+             22 POP_JUMP_IF_FALSE       58
+
+ 14          24 SETUP_LOOP              32 (to 58)
+             26 LOAD_GLOBAL              2 (range)
+             28 LOAD_CONST               4 (0)
+             30 LOAD_FAST                0 (arg)
+             32 CALL_FUNCTION            2
+             34 GET_ITER
+        >>   36 FOR_ITER                18 (to 56)
+             38 STORE_FAST               2 (x)
+
+ 15          40 LOAD_FAST                1 (squares)
+             42 LOAD_ATTR                3 (append)
+             44 LOAD_FAST                2 (x)
+             46 LOAD_FAST                2 (x)
+             48 BINARY_MULTIPLY
+             50 CALL_FUNCTION            1
+             52 POP_TOP
+             54 JUMP_ABSOLUTE           36
+        >>   56 POP_BLOCK
+
+ 16     >>   58 LOAD_FAST                1 (squares)
+             60 RETURN_VALUE
+
+
+Example of enumerate (builtin)
+
+start a list with zero:
+ list(enumerate(seasons)
+ [(0, 'Spring'), (1, 'Summer'), (2, 'Autumn'), (3, 'Winter')]
+
+start a list with any number:
+ list(enumerate(seasons, 1009))
+ [(1009, 'Spring'), (1010, 'Summer'), (1011, 'Autumn'), (1012, 'Winter')]
+
+de naam van het bestand:  c:\dev\mypython\examples\rangetest.py 
+
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900, 961, 1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 1681, 1764, 1849, 1936, 2025, 2116, 2209, 2304, 2401, 2500, 2601, 2704, 2809, 2916, 3025, 3136, 3249, 3364, 3481, 3600, 3721, 3844, 3969, 4096, 4225, 4356, 4489, 4624, 4761, 4900, 5041, 5184, 5329, 5476, 5625, 5776, 5929, 6084, 6241, 6400, 6561, 6724, 6889, 7056, 7225, 7396, 7569, 7744, 7921, 8100, 8281, 8464, 8649, 8836, 9025, 9216, 9409, 9604, 9801] 
+
