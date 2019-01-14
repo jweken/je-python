@@ -1,2 +1,3 @@
 
 *.jwe
+**/__pycache__
