@@ -1,4 +1,5 @@
 result = 1234567
 result1 = "hex: {0:x}".format(result)
-print("hex: {0:x}".format(result))
-print(result1)
+print("\nFormatted in print(): ", "hex: {0:x}".format(result))
+print('\nresult1 = "hex: {0:x}".format(result)\n',
+      "Formatted in variable: ", result1)

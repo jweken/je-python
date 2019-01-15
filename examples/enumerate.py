@@ -8,4 +8,4 @@ print('start a list with zero:\n',
 print()
 # start the list with any number
 print('start a list with any number:\n',
-      'list(enumerate(seasons, 1009))\n', list(enumerate(seasons, 109)))
+      'list(enumerate(seasons, 109))\n', list(enumerate(seasons, 109)))

@@ -1,4 +1,3 @@
-#! usr/bin/env python
 
 """
 Demonstrates the range() builtin-function
@@ -14,3 +13,7 @@ def squaredemo(arg: None):
         for x in range(0, arg):
             squares.append(x*x)
     return squares
+
+
+if __name__ == "__main__":
+    print(squaredemo(50))
