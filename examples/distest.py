@@ -1,4 +1,5 @@
 import dis
-import rangetest as test
+import random as _random
+
 print('\n', __file__)
-dis.dis(test)
+dis.dis(_random)
