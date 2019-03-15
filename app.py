@@ -1,3 +1,3 @@
 from paths import paths
 
-paths()
+paths(1)
