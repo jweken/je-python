@@ -1,3 +1,5 @@
+from named_unicode import random_example 
 from paths import paths
 
-paths(1)
+# paths()
+random_example()
