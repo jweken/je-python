@@ -3,8 +3,11 @@ import unicodedata
 
 def random_example():
     '''A pseudo-random sequence 
-       of Unicode characters'''
-    print('\n\tSome named Unicode characters:\n')
+       of Unicode characters\n
+       See also: https://unicode-table.com/en/
+
+       '''
+    print('\nA few named Unicode characters:\n')
     lcb = unicodedata.lookup('LEFT CURLY BRACKET')  # "\N{AMPERSAND}"
     atts = unicodedata.lookup('ADDRESSED TO THE SUBJECT')
     solidus = unicodedata.lookup('solidus')
