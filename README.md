@@ -1,6 +1,7 @@
 # je-python
 
-This is a test directory for beginners.
+This is a test directory for beginners.  
+See this project on [**Github**](<https://github.com/jweken/je-python>)
 
 Use this workspace for tests with python-files.
 
@@ -22,7 +23,11 @@ Use this workspace for tests with python-files.
 
 ## Create a C++ extension for Python
 
-Start here: [Walkthrough](<https://docs.microsoft.com/en-Us/visualstudio/python/working-with-c-cpp-python-in-visual-studio?view=vs-2017>)  
+* Start here: [Walkthrough](<https://docs.microsoft.com/en-Us/visualstudio/python/working-with-c-cpp-python-in-visual-studio?view=vs-2017>)  
 
-Look for: [Project in Visual Studio 2017 Pro](<file:///C:\Users\jweke\Source\Repos\2018\python\CppAndPython\CppAndPython.py>)
-***Warning:*** This project is incomplete.
+## Local Links
+
+### These links do not work on Github
+
+* Look for: [Project in Visual Studio 2017 Pro](<file:///C:\Users\jweke\Source\Repos\2018\python\CppAndPython\CppAndPython.py>)  
+  ***Warning:*** This project is incomplete.
