@@ -16,9 +16,11 @@ def random_example():
     macron = "\N{macron}"
     revmac = unicodedata.lookup('airplane')
     line = boxhl*80
+    pawn = '\u2659'
+    whitepawn = '\u265f'
     print(line)
     print(solidus, atts, lcb, uexcl, macron, revmac,
-          boxhl, '\u25b7', '\u2654', '\u265A')
+          boxhl, '\u25b7', '\u2654', '\u265A', pawn, whitepawn)
     print(line)
 
 

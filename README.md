@@ -3,7 +3,7 @@
 This is a test directory for beginners.  
 See this project on [**Github**](<https://github.com/jweken/je-python>)
 
-Use this workspace for tests with python-files.
+Use this workspace for testing python-files.
 
 ## Python Docs
 

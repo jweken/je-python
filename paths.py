@@ -4,7 +4,7 @@ __doc__ = """ Module paths is an experimental module
 import sys
 
 
-def paths():
+def showpaths():
     """ Print the paths from sys.path\n 
             this is a local method made by JW.Eken\n
             it has no special meaning, so if you want
@@ -16,4 +16,4 @@ def paths():
 
 
 if __name__ == '__main__':
-    paths()
+    showpaths()
