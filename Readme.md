@@ -2,7 +2,13 @@
 
 Use this workspace for tests with python-files.
 
-## Python Docs
+## Documents
+
+### Microsoft
+
+* [**Python on Windows documentation**](<https://docs.microsoft.com/nl-nl/windows/python/index>)
+
+### Python Docs
 
 * [Python Docs](<https://docs.python.org/3/index.html>) Overview  
   * Python [Tutorial](<https://docs.python.org/3/tutorial/index.html>)
@@ -24,3 +30,8 @@ Start here: [Walkthrough](<https://docs.microsoft.com/en-Us/visualstudio/python/
 
 Look for: [Project in Visual Studio 2017 Pro](<file:///C:\Users\jweke\Source\Repos\2018\python\CppAndPython\CppAndPython.py>)
 ***Warning:*** This project is incomplete.
+
+## Graphics in Python
+
+* [**Gtk-3 Tutorial**](<https://python-gtk-3-tutorial.readthedocs.io/en/latest/>)
+  
