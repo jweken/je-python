@@ -12,8 +12,12 @@ for x in r:
     if p <= pi:
         print(x, p)
         break
+
+# this prints a large integer value
+# a to the power b
 k = 789**719
-print(k)
+print(f'Print the result of k = 789**719:\n{k}')
+
 print('type of "result" :=', type(result))
 print(sin(pi*(3/2)))
 print(randombytes(16))

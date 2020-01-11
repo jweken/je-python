@@ -1,4 +1,6 @@
 # http://statistics.about.com/od/Applications/a/Example-Of-Bootstrapping.htm
+# https://www.thoughtco.com/example-of-bootstrapping-3126155
+
 from statistics import mean
 from random import choices
 
