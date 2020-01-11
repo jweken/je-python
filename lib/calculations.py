@@ -1,6 +1,4 @@
-from math import *
-from decimal import *
-from random import *
+from random import choices
 
 
 def randombytes(count: int):
@@ -8,7 +6,7 @@ def randombytes(count: int):
     """
 
     bytelist = []
-    for p in range(0, 255, 1):
+    for p in range(0, 256, 1):
         bytelist.append(p)
 
     bytelist = choices(bytelist, k=count)
@@ -16,6 +14,10 @@ def randombytes(count: int):
 
 
 def randhex(size: int, case: any):
+    """
+    This function creates a list of random byte and
+    returns it as a string (in lowercase)
+    """
     list = randombytes(size)
     s = ""
 

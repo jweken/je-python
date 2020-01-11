@@ -17,6 +17,7 @@ for i in range(n):
     new_diff = mean(combined[:len(drug)]) - mean(combined[len(drug):])
     count += (new_diff >= observed_diff)
 
+print(__doc__)
 print(f'{n} label reshufflings produced only {count} instances with a difference')
 print(
     f'at least as extreme as the observed difference of {observed_diff:.1f}.')
