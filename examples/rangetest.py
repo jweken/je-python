@@ -1,4 +1,3 @@
-
 """
 Demonstrates the range() builtin-function
 """
@@ -16,4 +15,5 @@ def squaredemo(arg: None):
 
 
 if __name__ == "__main__":
+    print(__doc__)
     print(squaredemo(50))

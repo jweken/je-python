@@ -1,0 +1,4334 @@
+
+ c:/dev/mypython/examples/distest.py
+Disassembly of Random:
+Disassembly of __getstate__:
+164           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (getstate)
+              4 CALL_METHOD              0
+              6 RETURN_VALUE
+
+Disassembly of __init__:
+ 94           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (seed)
+              4 LOAD_FAST                1 (x)
+              6 CALL_METHOD              1
+              8 POP_TOP
+
+ 95          10 LOAD_CONST               1 (None)
+             12 LOAD_FAST                0 (self)
+             14 STORE_ATTR               1 (gauss_next)
+             16 LOAD_CONST               1 (None)
+             18 RETURN_VALUE
+
+Disassembly of __reduce__:
+170           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (__class__)
+              4 LOAD_CONST               1 (())
+              6 LOAD_FAST                0 (self)
+              8 LOAD_METHOD              1 (getstate)
+             10 CALL_METHOD              0
+             12 BUILD_TUPLE              3
+             14 RETURN_VALUE
+
+Disassembly of __setstate__:
+167           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (setstate)
+              4 LOAD_FAST                1 (state)
+              6 CALL_METHOD              1
+              8 POP_TOP
+             10 LOAD_CONST               0 (None)
+             12 RETURN_VALUE
+
+Disassembly of _randbelow:
+228           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_FAST               7 (random)
+
+229           6 LOAD_FAST                0 (self)
+              8 LOAD_ATTR                1 (getrandbits)
+             10 STORE_FAST               8 (getrandbits)
+
+232          12 LOAD_FAST                4 (type)
+             14 LOAD_FAST                7 (random)
+             16 CALL_FUNCTION            1
+             18 LOAD_FAST                6 (BuiltinMethod)
+             20 COMPARE_OP               8 (is)
+             22 POP_JUMP_IF_TRUE        36
+             24 LOAD_FAST                4 (type)
+             26 LOAD_FAST                8 (getrandbits)
+             28 CALL_FUNCTION            1
+             30 LOAD_FAST                5 (Method)
+             32 COMPARE_OP               8 (is)
+             34 POP_JUMP_IF_FALSE       78
+
+233     >>   36 LOAD_FAST                1 (n)
+             38 LOAD_METHOD              2 (bit_length)
+             40 CALL_METHOD              0
+             42 STORE_FAST               9 (k)
+
+234          44 LOAD_FAST                8 (getrandbits)
+             46 LOAD_FAST                9 (k)
+             48 CALL_FUNCTION            1
+             50 STORE_FAST              10 (r)
+
+235          52 SETUP_LOOP              20 (to 74)
+        >>   54 LOAD_FAST               10 (r)
+             56 LOAD_FAST                1 (n)
+             58 COMPARE_OP               5 (>=)
+             60 POP_JUMP_IF_FALSE       72
+
+236          62 LOAD_FAST                8 (getrandbits)
+             64 LOAD_FAST                9 (k)
+             66 CALL_FUNCTION            1
+             68 STORE_FAST              10 (r)
+             70 JUMP_ABSOLUTE           54
+        >>   72 POP_BLOCK
+
+237     >>   74 LOAD_FAST               10 (r)
+             76 RETURN_VALUE
+
+240     >>   78 LOAD_FAST                1 (n)
+             80 LOAD_FAST                3 (maxsize)
+             82 COMPARE_OP               5 (>=)
+             84 POP_JUMP_IF_FALSE      108
+
+241          86 LOAD_GLOBAL              3 (_warn)
+             88 LOAD_CONST               1 ('Underlying random() generator does not supply \nenough bits to choose from a population range this large.\nTo remove the range limitation, add a getrandbits() method.')
+             90 CALL_FUNCTION            1
+             92 POP_TOP
+
+244          94 LOAD_FAST                2 (int)
+             96 LOAD_FAST                7 (random)
+             98 CALL_FUNCTION            0
+            100 LOAD_FAST                1 (n)
+            102 BINARY_MULTIPLY
+            104 CALL_FUNCTION            1
+            106 RETURN_VALUE
+
+245     >>  108 LOAD_FAST                1 (n)
+            110 LOAD_CONST               2 (0)
+            112 COMPARE_OP               2 (==)
+            114 POP_JUMP_IF_FALSE      124
+
+246         116 LOAD_GLOBAL              4 (ValueError)
+            118 LOAD_CONST               3 ('Boundary cannot be zero')
+            120 CALL_FUNCTION            1
+            122 RAISE_VARARGS            1
+
+247     >>  124 LOAD_FAST                3 (maxsize)
+            126 LOAD_FAST                1 (n)
+            128 BINARY_MODULO
+            130 STORE_FAST              11 (rem)
+
+248         132 LOAD_FAST                3 (maxsize)
+            134 LOAD_FAST               11 (rem)
+            136 BINARY_SUBTRACT
+            138 LOAD_FAST                3 (maxsize)
+            140 BINARY_TRUE_DIVIDE
+            142 STORE_FAST              12 (limit)
+
+249         144 LOAD_FAST                7 (random)
+            146 CALL_FUNCTION            0
+            148 STORE_FAST              10 (r)
+
+250         150 SETUP_LOOP              18 (to 170)
+        >>  152 LOAD_FAST               10 (r)
+            154 LOAD_FAST               12 (limit)
+            156 COMPARE_OP               5 (>=)
+            158 POP_JUMP_IF_FALSE      168
+
+251         160 LOAD_FAST                7 (random)
+            162 CALL_FUNCTION            0
+            164 STORE_FAST              10 (r)
+            166 JUMP_ABSOLUTE          152
+        >>  168 POP_BLOCK
+
+252     >>  170 LOAD_FAST                2 (int)
+            172 LOAD_FAST               10 (r)
+            174 LOAD_FAST                3 (maxsize)
+            176 BINARY_MULTIPLY
+            178 CALL_FUNCTION            1
+            180 LOAD_FAST                1 (n)
+            182 BINARY_MODULO
+            184 RETURN_VALUE
+
+Disassembly of betavariate:
+639           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (gammavariate)
+              4 LOAD_FAST                1 (alpha)
+              6 LOAD_CONST               1 (1.0)
+              8 CALL_METHOD              2
+             10 STORE_FAST               3 (y)
+
+640          12 LOAD_FAST                3 (y)
+             14 LOAD_CONST               2 (0)
+             16 COMPARE_OP               2 (==)
+             18 POP_JUMP_IF_FALSE       24
+
+641          20 LOAD_CONST               3 (0.0)
+             22 RETURN_VALUE
+
+643     >>   24 LOAD_FAST                3 (y)
+             26 LOAD_FAST                3 (y)
+             28 LOAD_FAST                0 (self)
+             30 LOAD_METHOD              0 (gammavariate)
+             32 LOAD_FAST                2 (beta)
+             34 LOAD_CONST               1 (1.0)
+             36 CALL_METHOD              2
+             38 BINARY_ADD
+             40 BINARY_TRUE_DIVIDE
+             42 RETURN_VALUE
+             44 LOAD_CONST               4 (None)
+             46 RETURN_VALUE
+
+Disassembly of choice:
+258           0 SETUP_EXCEPT            18 (to 20)
+
+259           2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              0 (_randbelow)
+              6 LOAD_GLOBAL              1 (len)
+              8 LOAD_FAST                1 (seq)
+             10 CALL_FUNCTION            1
+             12 CALL_METHOD              1
+             14 STORE_FAST               2 (i)
+             16 POP_BLOCK
+             18 JUMP_FORWARD            30 (to 50)
+
+260     >>   20 DUP_TOP
+             22 LOAD_GLOBAL              2 (ValueError)
+             24 COMPARE_OP              10 (exception match)
+             26 POP_JUMP_IF_FALSE       48
+             28 POP_TOP
+             30 POP_TOP
+             32 POP_TOP
+
+261          34 LOAD_GLOBAL              3 (IndexError)
+             36 LOAD_CONST               1 ('Cannot choose from an empty sequence')
+             38 CALL_FUNCTION            1
+             40 LOAD_CONST               2 (None)
+             42 RAISE_VARARGS            2
+             44 POP_EXCEPT
+             46 JUMP_FORWARD             2 (to 50)
+        >>   48 END_FINALLY
+
+262     >>   50 LOAD_FAST                1 (seq)
+             52 LOAD_FAST                2 (i)
+             54 BINARY_SUBSCR
+             56 RETURN_VALUE
+
+Disassembly of choices:
+351           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_DEREF              5 (random)
+
+352           6 LOAD_DEREF               2 (cum_weights)
+              8 LOAD_CONST               1 (None)
+             10 COMPARE_OP               8 (is)
+             12 POP_JUMP_IF_FALSE       78
+
+353          14 LOAD_FAST                2 (weights)
+             16 LOAD_CONST               1 (None)
+             18 COMPARE_OP               8 (is)
+             20 POP_JUMP_IF_FALSE       62
+
+354          22 LOAD_GLOBAL              1 (int)
+             24 STORE_DEREF              0 (_int)
+
+355          26 LOAD_GLOBAL              2 (len)
+             28 LOAD_DEREF               4 (population)
+             30 CALL_FUNCTION            1
+             32 STORE_DEREF              6 (total)
+
+356          34 LOAD_CLOSURE             0 (_int)
+             36 LOAD_CLOSURE             4 (population)
+             38 LOAD_CLOSURE             5 (random)
+             40 LOAD_CLOSURE             6 (total)
+             42 BUILD_TUPLE              4
+             44 LOAD_CONST               2 (<code object <listcomp> at 0x000001B959A54D20, file "C:\Program Files\Python37\lib\random.py", line 356>)
+             46 LOAD_CONST               3 ('Random.choices.<locals>.<listcomp>')
+             48 MAKE_FUNCTION            8
+             50 LOAD_GLOBAL              3 (range)
+             52 LOAD_FAST                4 (k)
+             54 CALL_FUNCTION            1
+             56 GET_ITER
+             58 CALL_FUNCTION            1
+             60 RETURN_VALUE
+
+357     >>   62 LOAD_GLOBAL              4 (list)
+             64 LOAD_GLOBAL              5 (_itertools)
+             66 LOAD_METHOD              6 (accumulate)
+             68 LOAD_FAST                2 (weights)
+             70 CALL_METHOD              1
+             72 CALL_FUNCTION            1
+             74 STORE_DEREF              2 (cum_weights)
+             76 JUMP_FORWARD            16 (to 94)
+
+358     >>   78 LOAD_FAST                2 (weights)
+             80 LOAD_CONST               1 (None)
+             82 COMPARE_OP               9 (is not)
+             84 POP_JUMP_IF_FALSE       94
+
+359          86 LOAD_GLOBAL              7 (TypeError)
+             88 LOAD_CONST               4 ('Cannot specify both weights and cumulative weights')
+             90 CALL_FUNCTION            1
+             92 RAISE_VARARGS            1
+
+360     >>   94 LOAD_GLOBAL              2 (len)
+             96 LOAD_DEREF               2 (cum_weights)
+             98 CALL_FUNCTION            1
+            100 LOAD_GLOBAL              2 (len)
+            102 LOAD_DEREF               4 (population)
+            104 CALL_FUNCTION            1
+            106 COMPARE_OP               3 (!=)
+            108 POP_JUMP_IF_FALSE      118
+
+361         110 LOAD_GLOBAL              8 (ValueError)
+            112 LOAD_CONST               5 ('The number of weights does not match the population')
+            114 CALL_FUNCTION            1
+            116 RAISE_VARARGS            1
+
+362     >>  118 LOAD_GLOBAL              9 (_bisect)
+            120 LOAD_ATTR               10 (bisect)
+            122 STORE_DEREF              1 (bisect)
+
+363         124 LOAD_DEREF               2 (cum_weights)
+            126 LOAD_CONST               6 (-1)
+            128 BINARY_SUBSCR
+            130 STORE_DEREF              6 (total)
+
+364         132 LOAD_GLOBAL              2 (len)
+            134 LOAD_DEREF               2 (cum_weights)
+            136 CALL_FUNCTION            1
+            138 LOAD_CONST               7 (1)
+            140 BINARY_SUBTRACT
+            142 STORE_DEREF              3 (hi)
+
+365         144 LOAD_CLOSURE             1 (bisect)
+            146 LOAD_CLOSURE             2 (cum_weights)
+            148 LOAD_CLOSURE             3 (hi)
+            150 LOAD_CLOSURE             4 (population)
+            152 LOAD_CLOSURE             5 (random)
+            154 LOAD_CLOSURE             6 (total)
+            156 BUILD_TUPLE              6
+            158 LOAD_CONST               8 (<code object <listcomp> at 0x000001B959A54C90, file "C:\Program Files\Python37\lib\random.py", line 365>)
+            160 LOAD_CONST               3 ('Random.choices.<locals>.<listcomp>')
+            162 MAKE_FUNCTION            8
+
+366         164 LOAD_GLOBAL              3 (range)
+            166 LOAD_FAST                4 (k)
+            168 CALL_FUNCTION            1
+            170 GET_ITER
+            172 CALL_FUNCTION            1
+            174 RETURN_VALUE
+
+Disassembly of <code object <listcomp> at 0x000001B959A54D20, file "C:\Program Files\Python37\lib\random.py", line 356>:
+356           0 BUILD_LIST               0
+              2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                22 (to 28)
+              6 STORE_FAST               1 (i)
+              8 LOAD_DEREF               1 (population)
+             10 LOAD_DEREF               0 (_int)
+             12 LOAD_DEREF               2 (random)
+             14 CALL_FUNCTION            0
+             16 LOAD_DEREF               3 (total)
+             18 BINARY_MULTIPLY
+             20 CALL_FUNCTION            1
+             22 BINARY_SUBSCR
+             24 LIST_APPEND              2
+             26 JUMP_ABSOLUTE            4
+        >>   28 RETURN_VALUE
+
+Disassembly of <code object <listcomp> at 0x000001B959A54C90, file "C:\Program Files\Python37\lib\random.py", line 365>:
+365           0 BUILD_LIST               0
+              2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                28 (to 34)
+
+366           6 STORE_FAST               1 (i)
+              8 LOAD_DEREF               3 (population)
+             10 LOAD_DEREF               0 (bisect)
+             12 LOAD_DEREF               1 (cum_weights)
+             14 LOAD_DEREF               4 (random)
+             16 CALL_FUNCTION            0
+             18 LOAD_DEREF               5 (total)
+             20 BINARY_MULTIPLY
+             22 LOAD_CONST               0 (0)
+             24 LOAD_DEREF               2 (hi)
+             26 CALL_FUNCTION            4
+             28 BINARY_SUBSCR
+             30 LIST_APPEND              2
+             32 JUMP_ABSOLUTE            4
+        >>   34 RETURN_VALUE
+
+Disassembly of expovariate:
+452           0 LOAD_GLOBAL              0 (_log)
+              2 LOAD_CONST               1 (1.0)
+              4 LOAD_FAST                0 (self)
+              6 LOAD_METHOD              1 (random)
+              8 CALL_METHOD              0
+             10 BINARY_SUBTRACT
+             12 CALL_FUNCTION            1
+             14 UNARY_NEGATIVE
+             16 LOAD_FAST                1 (lambd)
+             18 BINARY_TRUE_DIVIDE
+             20 RETURN_VALUE
+
+Disassembly of gammavariate:
+521           0 LOAD_FAST                1 (alpha)
+              2 LOAD_CONST               1 (0.0)
+              4 COMPARE_OP               1 (<=)
+              6 POP_JUMP_IF_TRUE        16
+              8 LOAD_FAST                2 (beta)
+             10 LOAD_CONST               1 (0.0)
+             12 COMPARE_OP               1 (<=)
+             14 POP_JUMP_IF_FALSE       24
+
+522     >>   16 LOAD_GLOBAL              0 (ValueError)
+             18 LOAD_CONST               2 ('gammavariate: alpha and beta must be > 0.0')
+             20 CALL_FUNCTION            1
+             22 RAISE_VARARGS            1
+
+524     >>   24 LOAD_FAST                0 (self)
+             26 LOAD_ATTR                1 (random)
+             28 STORE_FAST               3 (random)
+
+525          30 LOAD_FAST                1 (alpha)
+             32 LOAD_CONST               3 (1.0)
+             34 COMPARE_OP               4 (>)
+             36 POP_JUMP_IF_FALSE      218
+
+531          38 LOAD_GLOBAL              2 (_sqrt)
+             40 LOAD_CONST               4 (2.0)
+             42 LOAD_FAST                1 (alpha)
+             44 BINARY_MULTIPLY
+             46 LOAD_CONST               3 (1.0)
+             48 BINARY_SUBTRACT
+             50 CALL_FUNCTION            1
+             52 STORE_FAST               4 (ainv)
+
+532          54 LOAD_FAST                1 (alpha)
+             56 LOAD_GLOBAL              3 (LOG4)
+             58 BINARY_SUBTRACT
+             60 STORE_FAST               5 (bbb)
+
+533          62 LOAD_FAST                1 (alpha)
+             64 LOAD_FAST                4 (ainv)
+             66 BINARY_ADD
+             68 STORE_FAST               6 (ccc)
+
+535          70 SETUP_LOOP             144 (to 216)
+
+536     >>   72 LOAD_FAST                3 (random)
+             74 CALL_FUNCTION            0
+             76 STORE_FAST               7 (u1)
+
+537          78 LOAD_CONST               5 (1e-07)
+             80 LOAD_FAST                7 (u1)
+             82 DUP_TOP
+             84 ROT_THREE
+             86 COMPARE_OP               0 (<)
+             88 POP_JUMP_IF_FALSE       98
+             90 LOAD_CONST               6 (0.9999999)
+             92 COMPARE_OP               0 (<)
+             94 POP_JUMP_IF_TRUE       102
+             96 JUMP_ABSOLUTE           72
+        >>   98 POP_TOP
+
+538         100 JUMP_ABSOLUTE           72
+
+539     >>  102 LOAD_CONST               3 (1.0)
+            104 LOAD_FAST                3 (random)
+            106 CALL_FUNCTION            0
+            108 BINARY_SUBTRACT
+            110 STORE_FAST               8 (u2)
+
+540         112 LOAD_GLOBAL              4 (_log)
+            114 LOAD_FAST                7 (u1)
+            116 LOAD_CONST               3 (1.0)
+            118 LOAD_FAST                7 (u1)
+            120 BINARY_SUBTRACT
+            122 BINARY_TRUE_DIVIDE
+            124 CALL_FUNCTION            1
+            126 LOAD_FAST                4 (ainv)
+            128 BINARY_TRUE_DIVIDE
+            130 STORE_FAST               9 (v)
+
+541         132 LOAD_FAST                1 (alpha)
+            134 LOAD_GLOBAL              5 (_exp)
+            136 LOAD_FAST                9 (v)
+            138 CALL_FUNCTION            1
+            140 BINARY_MULTIPLY
+            142 STORE_FAST              10 (x)
+
+542         144 LOAD_FAST                7 (u1)
+            146 LOAD_FAST                7 (u1)
+            148 BINARY_MULTIPLY
+            150 LOAD_FAST                8 (u2)
+            152 BINARY_MULTIPLY
+            154 STORE_FAST              11 (z)
+
+543         156 LOAD_FAST                5 (bbb)
+            158 LOAD_FAST                6 (ccc)
+            160 LOAD_FAST                9 (v)
+            162 BINARY_MULTIPLY
+            164 BINARY_ADD
+            166 LOAD_FAST               10 (x)
+            168 BINARY_SUBTRACT
+            170 STORE_FAST              12 (r)
+
+544         172 LOAD_FAST               12 (r)
+            174 LOAD_GLOBAL              6 (SG_MAGICCONST)
+            176 BINARY_ADD
+            178 LOAD_CONST               7 (4.5)
+            180 LOAD_FAST               11 (z)
+            182 BINARY_MULTIPLY
+            184 BINARY_SUBTRACT
+            186 LOAD_CONST               1 (0.0)
+            188 COMPARE_OP               5 (>=)
+            190 POP_JUMP_IF_TRUE       204
+            192 LOAD_FAST               12 (r)
+            194 LOAD_GLOBAL              4 (_log)
+            196 LOAD_FAST               11 (z)
+            198 CALL_FUNCTION            1
+            200 COMPARE_OP               5 (>=)
+            202 POP_JUMP_IF_FALSE       72
+
+545     >>  204 LOAD_FAST               10 (x)
+            206 LOAD_FAST                2 (beta)
+            208 BINARY_MULTIPLY
+            210 RETURN_VALUE
+            212 JUMP_ABSOLUTE           72
+            214 POP_BLOCK
+        >>  216 JUMP_FORWARD           190 (to 408)
+
+547     >>  218 LOAD_FAST                1 (alpha)
+            220 LOAD_CONST               3 (1.0)
+            222 COMPARE_OP               2 (==)
+            224 EXTENDED_ARG             1
+            226 POP_JUMP_IF_FALSE      268
+
+549         228 LOAD_FAST                3 (random)
+            230 CALL_FUNCTION            0
+            232 STORE_FAST              13 (u)
+
+550         234 SETUP_LOOP              18 (to 254)
+        >>  236 LOAD_FAST               13 (u)
+            238 LOAD_CONST               5 (1e-07)
+            240 COMPARE_OP               1 (<=)
+            242 POP_JUMP_IF_FALSE      252
+
+551         244 LOAD_FAST                3 (random)
+            246 CALL_FUNCTION            0
+            248 STORE_FAST              13 (u)
+            250 JUMP_ABSOLUTE          236
+        >>  252 POP_BLOCK
+
+552     >>  254 LOAD_GLOBAL              4 (_log)
+            256 LOAD_FAST               13 (u)
+            258 CALL_FUNCTION            1
+            260 UNARY_NEGATIVE
+            262 LOAD_FAST                2 (beta)
+            264 BINARY_MULTIPLY
+            266 RETURN_VALUE
+
+558     >>  268 SETUP_LOOP             130 (to 400)
+
+559     >>  270 LOAD_FAST                3 (random)
+            272 CALL_FUNCTION            0
+            274 STORE_FAST              13 (u)
+
+560         276 LOAD_GLOBAL              7 (_e)
+            278 LOAD_FAST                1 (alpha)
+            280 BINARY_ADD
+            282 LOAD_GLOBAL              7 (_e)
+            284 BINARY_TRUE_DIVIDE
+            286 STORE_FAST              14 (b)
+
+561         288 LOAD_FAST               14 (b)
+            290 LOAD_FAST               13 (u)
+            292 BINARY_MULTIPLY
+            294 STORE_FAST              15 (p)
+
+562         296 LOAD_FAST               15 (p)
+            298 LOAD_CONST               3 (1.0)
+            300 COMPARE_OP               1 (<=)
+            302 EXTENDED_ARG             1
+            304 POP_JUMP_IF_FALSE      320
+
+563         306 LOAD_FAST               15 (p)
+            308 LOAD_CONST               3 (1.0)
+            310 LOAD_FAST                1 (alpha)
+            312 BINARY_TRUE_DIVIDE
+            314 BINARY_POWER
+            316 STORE_FAST              10 (x)
+            318 JUMP_FORWARD            18 (to 338)
+
+565     >>  320 LOAD_GLOBAL              4 (_log)
+            322 LOAD_FAST               14 (b)
+            324 LOAD_FAST               15 (p)
+            326 BINARY_SUBTRACT
+            328 LOAD_FAST                1 (alpha)
+            330 BINARY_TRUE_DIVIDE
+            332 CALL_FUNCTION            1
+            334 UNARY_NEGATIVE
+            336 STORE_FAST              10 (x)
+
+566     >>  338 LOAD_FAST                3 (random)
+            340 CALL_FUNCTION            0
+            342 STORE_FAST               7 (u1)
+
+567         344 LOAD_FAST               15 (p)
+            346 LOAD_CONST               3 (1.0)
+            348 COMPARE_OP               4 (>)
+            350 EXTENDED_ARG             1
+            352 POP_JUMP_IF_FALSE      376
+
+568         354 LOAD_FAST                7 (u1)
+            356 LOAD_FAST               10 (x)
+            358 LOAD_FAST                1 (alpha)
+            360 LOAD_CONST               3 (1.0)
+            362 BINARY_SUBTRACT
+            364 BINARY_POWER
+            366 COMPARE_OP               1 (<=)
+            368 EXTENDED_ARG             1
+            370 POP_JUMP_IF_FALSE      394
+
+569         372 BREAK_LOOP
+            374 JUMP_FORWARD            18 (to 394)
+
+570     >>  376 LOAD_FAST                7 (u1)
+            378 LOAD_GLOBAL              5 (_exp)
+            380 LOAD_FAST               10 (x)
+            382 UNARY_NEGATIVE
+            384 CALL_FUNCTION            1
+            386 COMPARE_OP               1 (<=)
+            388 EXTENDED_ARG             1
+            390 POP_JUMP_IF_FALSE      270
+
+571         392 BREAK_LOOP
+        >>  394 EXTENDED_ARG             1
+            396 JUMP_ABSOLUTE          270
+            398 POP_BLOCK
+
+572     >>  400 LOAD_FAST               10 (x)
+            402 LOAD_FAST                2 (beta)
+            404 BINARY_MULTIPLY
+            406 RETURN_VALUE
+        >>  408 LOAD_CONST               8 (None)
+            410 RETURN_VALUE
+
+Disassembly of gauss:
+604           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_FAST               3 (random)
+
+605           6 LOAD_FAST                0 (self)
+              8 LOAD_ATTR                1 (gauss_next)
+             10 STORE_FAST               4 (z)
+
+606          12 LOAD_CONST               1 (None)
+             14 LOAD_FAST                0 (self)
+             16 STORE_ATTR               1 (gauss_next)
+
+607          18 LOAD_FAST                4 (z)
+             20 LOAD_CONST               1 (None)
+             22 COMPARE_OP               8 (is)
+             24 POP_JUMP_IF_FALSE       84
+
+608          26 LOAD_FAST                3 (random)
+             28 CALL_FUNCTION            0
+             30 LOAD_GLOBAL              2 (TWOPI)
+             32 BINARY_MULTIPLY
+             34 STORE_FAST               5 (x2pi)
+
+609          36 LOAD_GLOBAL              3 (_sqrt)
+             38 LOAD_CONST               2 (-2.0)
+             40 LOAD_GLOBAL              4 (_log)
+             42 LOAD_CONST               3 (1.0)
+             44 LOAD_FAST                3 (random)
+             46 CALL_FUNCTION            0
+             48 BINARY_SUBTRACT
+             50 CALL_FUNCTION            1
+             52 BINARY_MULTIPLY
+             54 CALL_FUNCTION            1
+             56 STORE_FAST               6 (g2rad)
+
+610          58 LOAD_GLOBAL              5 (_cos)
+             60 LOAD_FAST                5 (x2pi)
+             62 CALL_FUNCTION            1
+             64 LOAD_FAST                6 (g2rad)
+             66 BINARY_MULTIPLY
+             68 STORE_FAST               4 (z)
+
+611          70 LOAD_GLOBAL              6 (_sin)
+             72 LOAD_FAST                5 (x2pi)
+             74 CALL_FUNCTION            1
+             76 LOAD_FAST                6 (g2rad)
+             78 BINARY_MULTIPLY
+             80 LOAD_FAST                0 (self)
+             82 STORE_ATTR               1 (gauss_next)
+
+613     >>   84 LOAD_FAST                1 (mu)
+             86 LOAD_FAST                4 (z)
+             88 LOAD_FAST                2 (sigma)
+             90 BINARY_MULTIPLY
+             92 BINARY_ADD
+             94 RETURN_VALUE
+
+Disassembly of getstate:
+131           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (VERSION)
+              4 LOAD_GLOBAL              1 (super)
+              6 CALL_FUNCTION            0
+              8 LOAD_METHOD              2 (getstate)
+             10 CALL_METHOD              0
+             12 LOAD_FAST                0 (self)
+             14 LOAD_ATTR                3 (gauss_next)
+             16 BUILD_TUPLE              3
+             18 RETURN_VALUE
+
+Disassembly of lognormvariate:
+433           0 LOAD_GLOBAL              0 (_exp)
+              2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              1 (normalvariate)
+              6 LOAD_FAST                1 (mu)
+              8 LOAD_FAST                2 (sigma)
+             10 CALL_METHOD              2
+             12 CALL_FUNCTION            1
+             14 RETURN_VALUE
+
+Disassembly of normalvariate:
+413           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_FAST               3 (random)
+
+414           6 SETUP_LOOP              64 (to 72)
+
+415     >>    8 LOAD_FAST                3 (random)
+             10 CALL_FUNCTION            0
+             12 STORE_FAST               4 (u1)
+
+416          14 LOAD_CONST               1 (1.0)
+             16 LOAD_FAST                3 (random)
+             18 CALL_FUNCTION            0
+             20 BINARY_SUBTRACT
+             22 STORE_FAST               5 (u2)
+
+417          24 LOAD_GLOBAL              1 (NV_MAGICCONST)
+             26 LOAD_FAST                4 (u1)
+             28 LOAD_CONST               2 (0.5)
+             30 BINARY_SUBTRACT
+             32 BINARY_MULTIPLY
+             34 LOAD_FAST                5 (u2)
+             36 BINARY_TRUE_DIVIDE
+             38 STORE_FAST               6 (z)
+
+418          40 LOAD_FAST                6 (z)
+             42 LOAD_FAST                6 (z)
+             44 BINARY_MULTIPLY
+             46 LOAD_CONST               3 (4.0)
+             48 BINARY_TRUE_DIVIDE
+             50 STORE_FAST               7 (zz)
+
+419          52 LOAD_FAST                7 (zz)
+             54 LOAD_GLOBAL              2 (_log)
+             56 LOAD_FAST                5 (u2)
+             58 CALL_FUNCTION            1
+             60 UNARY_NEGATIVE
+             62 COMPARE_OP               1 (<=)
+             64 POP_JUMP_IF_FALSE        8
+
+420          66 BREAK_LOOP
+             68 JUMP_ABSOLUTE            8
+             70 POP_BLOCK
+
+421     >>   72 LOAD_FAST                1 (mu)
+             74 LOAD_FAST                6 (z)
+             76 LOAD_FAST                2 (sigma)
+             78 BINARY_MULTIPLY
+             80 BINARY_ADD
+             82 RETURN_VALUE
+
+Disassembly of paretovariate:
+651           0 LOAD_CONST               1 (1.0)
+              2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              0 (random)
+              6 CALL_METHOD              0
+              8 BINARY_SUBTRACT
+             10 STORE_FAST               2 (u)
+
+652          12 LOAD_CONST               1 (1.0)
+             14 LOAD_FAST                2 (u)
+             16 LOAD_CONST               1 (1.0)
+             18 LOAD_FAST                1 (alpha)
+             20 BINARY_TRUE_DIVIDE
+             22 BINARY_POWER
+             24 BINARY_TRUE_DIVIDE
+             26 RETURN_VALUE
+
+Disassembly of randint:
+222           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (randrange)
+              4 LOAD_FAST                1 (a)
+              6 LOAD_FAST                2 (b)
+              8 LOAD_CONST               1 (1)
+             10 BINARY_ADD
+             12 CALL_METHOD              2
+             14 RETURN_VALUE
+
+Disassembly of randrange:
+184           0 LOAD_FAST                4 (_int)
+              2 LOAD_FAST                1 (start)
+              4 CALL_FUNCTION            1
+              6 STORE_FAST               5 (istart)
+
+185           8 LOAD_FAST                5 (istart)
+             10 LOAD_FAST                1 (start)
+             12 COMPARE_OP               3 (!=)
+             14 POP_JUMP_IF_FALSE       24
+
+186          16 LOAD_GLOBAL              0 (ValueError)
+             18 LOAD_CONST               1 ('non-integer arg 1 for randrange()')
+             20 CALL_FUNCTION            1
+             22 RAISE_VARARGS            1
+
+187     >>   24 LOAD_FAST                2 (stop)
+             26 LOAD_CONST               2 (None)
+             28 COMPARE_OP               8 (is)
+             30 POP_JUMP_IF_FALSE       58
+
+188          32 LOAD_FAST                5 (istart)
+             34 LOAD_CONST               3 (0)
+             36 COMPARE_OP               4 (>)
+             38 POP_JUMP_IF_FALSE       50
+
+189          40 LOAD_FAST                0 (self)
+             42 LOAD_METHOD              1 (_randbelow)
+             44 LOAD_FAST                5 (istart)
+             46 CALL_METHOD              1
+             48 RETURN_VALUE
+
+190     >>   50 LOAD_GLOBAL              0 (ValueError)
+             52 LOAD_CONST               4 ('empty range for randrange()')
+             54 CALL_FUNCTION            1
+             56 RAISE_VARARGS            1
+
+193     >>   58 LOAD_FAST                4 (_int)
+             60 LOAD_FAST                2 (stop)
+             62 CALL_FUNCTION            1
+             64 STORE_FAST               6 (istop)
+
+194          66 LOAD_FAST                6 (istop)
+             68 LOAD_FAST                2 (stop)
+             70 COMPARE_OP               3 (!=)
+             72 POP_JUMP_IF_FALSE       82
+
+195          74 LOAD_GLOBAL              0 (ValueError)
+             76 LOAD_CONST               5 ('non-integer stop for randrange()')
+             78 CALL_FUNCTION            1
+             80 RAISE_VARARGS            1
+
+196     >>   82 LOAD_FAST                6 (istop)
+             84 LOAD_FAST                5 (istart)
+             86 BINARY_SUBTRACT
+             88 STORE_FAST               7 (width)
+
+197          90 LOAD_FAST                3 (step)
+             92 LOAD_CONST               6 (1)
+             94 COMPARE_OP               2 (==)
+             96 POP_JUMP_IF_FALSE      120
+             98 LOAD_FAST                7 (width)
+            100 LOAD_CONST               3 (0)
+            102 COMPARE_OP               4 (>)
+            104 POP_JUMP_IF_FALSE      120
+
+198         106 LOAD_FAST                5 (istart)
+            108 LOAD_FAST                0 (self)
+            110 LOAD_METHOD              1 (_randbelow)
+            112 LOAD_FAST                7 (width)
+            114 CALL_METHOD              1
+            116 BINARY_ADD
+            118 RETURN_VALUE
+
+199     >>  120 LOAD_FAST                3 (step)
+            122 LOAD_CONST               6 (1)
+            124 COMPARE_OP               2 (==)
+            126 POP_JUMP_IF_FALSE      146
+
+200         128 LOAD_GLOBAL              0 (ValueError)
+            130 LOAD_CONST               7 ('empty range for randrange() (%d,%d, %d)')
+            132 LOAD_FAST                5 (istart)
+            134 LOAD_FAST                6 (istop)
+            136 LOAD_FAST                7 (width)
+            138 BUILD_TUPLE              3
+            140 BINARY_MODULO
+            142 CALL_FUNCTION            1
+            144 RAISE_VARARGS            1
+
+203     >>  146 LOAD_FAST                4 (_int)
+            148 LOAD_FAST                3 (step)
+            150 CALL_FUNCTION            1
+            152 STORE_FAST               8 (istep)
+
+204         154 LOAD_FAST                8 (istep)
+            156 LOAD_FAST                3 (step)
+            158 COMPARE_OP               3 (!=)
+            160 POP_JUMP_IF_FALSE      170
+
+205         162 LOAD_GLOBAL              0 (ValueError)
+            164 LOAD_CONST               8 ('non-integer step for randrange()')
+            166 CALL_FUNCTION            1
+            168 RAISE_VARARGS            1
+
+206     >>  170 LOAD_FAST                8 (istep)
+            172 LOAD_CONST               3 (0)
+            174 COMPARE_OP               4 (>)
+            176 POP_JUMP_IF_FALSE      196
+
+207         178 LOAD_FAST                7 (width)
+            180 LOAD_FAST                8 (istep)
+            182 BINARY_ADD
+            184 LOAD_CONST               6 (1)
+            186 BINARY_SUBTRACT
+            188 LOAD_FAST                8 (istep)
+            190 BINARY_FLOOR_DIVIDE
+            192 STORE_FAST               9 (n)
+            194 JUMP_FORWARD            34 (to 230)
+
+208     >>  196 LOAD_FAST                8 (istep)
+            198 LOAD_CONST               3 (0)
+            200 COMPARE_OP               0 (<)
+            202 POP_JUMP_IF_FALSE      222
+
+209         204 LOAD_FAST                7 (width)
+            206 LOAD_FAST                8 (istep)
+            208 BINARY_ADD
+            210 LOAD_CONST               6 (1)
+            212 BINARY_ADD
+            214 LOAD_FAST                8 (istep)
+            216 BINARY_FLOOR_DIVIDE
+            218 STORE_FAST               9 (n)
+            220 JUMP_FORWARD             8 (to 230)
+
+211     >>  222 LOAD_GLOBAL              0 (ValueError)
+            224 LOAD_CONST               9 ('zero step for randrange()')
+            226 CALL_FUNCTION            1
+            228 RAISE_VARARGS            1
+
+213     >>  230 LOAD_FAST                9 (n)
+            232 LOAD_CONST               3 (0)
+            234 COMPARE_OP               1 (<=)
+            236 POP_JUMP_IF_FALSE      246
+
+214         238 LOAD_GLOBAL              0 (ValueError)
+            240 LOAD_CONST               4 ('empty range for randrange()')
+            242 CALL_FUNCTION            1
+            244 RAISE_VARARGS            1
+
+216     >>  246 LOAD_FAST                5 (istart)
+            248 LOAD_FAST                8 (istep)
+            250 LOAD_FAST                0 (self)
+            252 LOAD_METHOD              1 (_randbelow)
+            254 LOAD_FAST                9 (n)
+            256 CALL_METHOD              1
+            258 BINARY_MULTIPLY
+            260 BINARY_ADD
+            262 RETURN_VALUE
+
+Disassembly of sample:
+314           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (population)
+              4 LOAD_GLOBAL              1 (_Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_FALSE       18
+
+315          10 LOAD_GLOBAL              2 (tuple)
+             12 LOAD_FAST                1 (population)
+             14 CALL_FUNCTION            1
+             16 STORE_FAST               1 (population)
+
+316     >>   18 LOAD_GLOBAL              0 (isinstance)
+             20 LOAD_FAST                1 (population)
+             22 LOAD_GLOBAL              3 (_Sequence)
+             24 CALL_FUNCTION            2
+             26 POP_JUMP_IF_TRUE        36
+
+317          28 LOAD_GLOBAL              4 (TypeError)
+             30 LOAD_CONST               1 ('Population must be a sequence or set.  For dicts, use list(d).')
+             32 CALL_FUNCTION            1
+             34 RAISE_VARARGS            1
+
+318     >>   36 LOAD_FAST                0 (self)
+             38 LOAD_ATTR                5 (_randbelow)
+             40 STORE_FAST               3 (randbelow)
+
+319          42 LOAD_GLOBAL              6 (len)
+             44 LOAD_FAST                1 (population)
+             46 CALL_FUNCTION            1
+             48 STORE_FAST               4 (n)
+
+320          50 LOAD_CONST               2 (0)
+             52 LOAD_FAST                2 (k)
+             54 DUP_TOP
+             56 ROT_THREE
+             58 COMPARE_OP               1 (<=)
+             60 POP_JUMP_IF_FALSE       70
+             62 LOAD_FAST                4 (n)
+             64 COMPARE_OP               1 (<=)
+             66 POP_JUMP_IF_TRUE        80
+             68 JUMP_FORWARD             2 (to 72)
+        >>   70 POP_TOP
+
+321     >>   72 LOAD_GLOBAL              7 (ValueError)
+             74 LOAD_CONST               3 ('Sample larger than population or is negative')
+             76 CALL_FUNCTION            1
+             78 RAISE_VARARGS            1
+
+322     >>   80 LOAD_CONST               4 (None)
+             82 BUILD_LIST               1
+             84 LOAD_FAST                2 (k)
+             86 BINARY_MULTIPLY
+             88 STORE_FAST               5 (result)
+
+323          90 LOAD_CONST               5 (21)
+             92 STORE_FAST               6 (setsize)
+
+324          94 LOAD_FAST                2 (k)
+             96 LOAD_CONST               6 (5)
+             98 COMPARE_OP               4 (>)
+            100 POP_JUMP_IF_FALSE      128
+
+325         102 LOAD_FAST                6 (setsize)
+            104 LOAD_CONST               7 (4)
+            106 LOAD_GLOBAL              8 (_ceil)
+            108 LOAD_GLOBAL              9 (_log)
+            110 LOAD_FAST                2 (k)
+            112 LOAD_CONST               8 (3)
+            114 BINARY_MULTIPLY
+            116 LOAD_CONST               7 (4)
+            118 CALL_FUNCTION            2
+            120 CALL_FUNCTION            1
+            122 BINARY_POWER
+            124 INPLACE_ADD
+            126 STORE_FAST               6 (setsize)
+
+326     >>  128 LOAD_FAST                4 (n)
+            130 LOAD_FAST                6 (setsize)
+            132 COMPARE_OP               1 (<=)
+            134 POP_JUMP_IF_FALSE      208
+
+328         136 LOAD_GLOBAL             10 (list)
+            138 LOAD_FAST                1 (population)
+            140 CALL_FUNCTION            1
+            142 STORE_FAST               7 (pool)
+
+329         144 SETUP_LOOP             144 (to 290)
+            146 LOAD_GLOBAL             11 (range)
+            148 LOAD_FAST                2 (k)
+            150 CALL_FUNCTION            1
+            152 GET_ITER
+        >>  154 FOR_ITER                48 (to 204)
+            156 STORE_FAST               8 (i)
+
+330         158 LOAD_FAST                3 (randbelow)
+            160 LOAD_FAST                4 (n)
+            162 LOAD_FAST                8 (i)
+            164 BINARY_SUBTRACT
+            166 CALL_FUNCTION            1
+            168 STORE_FAST               9 (j)
+
+331         170 LOAD_FAST                7 (pool)
+            172 LOAD_FAST                9 (j)
+            174 BINARY_SUBSCR
+            176 LOAD_FAST                5 (result)
+            178 LOAD_FAST                8 (i)
+            180 STORE_SUBSCR
+
+332         182 LOAD_FAST                7 (pool)
+            184 LOAD_FAST                4 (n)
+            186 LOAD_FAST                8 (i)
+            188 BINARY_SUBTRACT
+            190 LOAD_CONST               9 (1)
+            192 BINARY_SUBTRACT
+            194 BINARY_SUBSCR
+            196 LOAD_FAST                7 (pool)
+            198 LOAD_FAST                9 (j)
+            200 STORE_SUBSCR
+            202 JUMP_ABSOLUTE          154
+        >>  204 POP_BLOCK
+            206 JUMP_FORWARD            82 (to 290)
+
+334     >>  208 LOAD_GLOBAL             12 (set)
+            210 CALL_FUNCTION            0
+            212 STORE_FAST              10 (selected)
+
+335         214 LOAD_FAST               10 (selected)
+            216 LOAD_ATTR               13 (add)
+            218 STORE_FAST              11 (selected_add)
+
+336         220 SETUP_LOOP              68 (to 290)
+            222 LOAD_GLOBAL             11 (range)
+            224 LOAD_FAST                2 (k)
+            226 CALL_FUNCTION            1
+            228 GET_ITER
+        >>  230 FOR_ITER                56 (to 288)
+            232 STORE_FAST               8 (i)
+
+337         234 LOAD_FAST                3 (randbelow)
+            236 LOAD_FAST                4 (n)
+            238 CALL_FUNCTION            1
+            240 STORE_FAST               9 (j)
+
+338         242 SETUP_LOOP              22 (to 266)
+        >>  244 LOAD_FAST                9 (j)
+            246 LOAD_FAST               10 (selected)
+            248 COMPARE_OP               6 (in)
+            250 EXTENDED_ARG             1
+            252 POP_JUMP_IF_FALSE      264
+
+339         254 LOAD_FAST                3 (randbelow)
+            256 LOAD_FAST                4 (n)
+            258 CALL_FUNCTION            1
+            260 STORE_FAST               9 (j)
+            262 JUMP_ABSOLUTE          244
+        >>  264 POP_BLOCK
+
+340     >>  266 LOAD_FAST               11 (selected_add)
+            268 LOAD_FAST                9 (j)
+            270 CALL_FUNCTION            1
+            272 POP_TOP
+
+341         274 LOAD_FAST                1 (population)
+            276 LOAD_FAST                9 (j)
+            278 BINARY_SUBSCR
+            280 LOAD_FAST                5 (result)
+            282 LOAD_FAST                8 (i)
+            284 STORE_SUBSCR
+            286 JUMP_ABSOLUTE          230
+        >>  288 POP_BLOCK
+
+342     >>  290 LOAD_FAST                5 (result)
+            292 RETURN_VALUE
+
+Disassembly of seed:
+112           0 LOAD_FAST                2 (version)
+              2 LOAD_CONST               1 (1)
+              4 COMPARE_OP               2 (==)
+              6 POP_JUMP_IF_FALSE      134
+              8 LOAD_GLOBAL              0 (isinstance)
+             10 LOAD_FAST                1 (a)
+             12 LOAD_GLOBAL              1 (str)
+             14 LOAD_GLOBAL              2 (bytes)
+             16 BUILD_TUPLE              2
+             18 CALL_FUNCTION            2
+             20 POP_JUMP_IF_FALSE      134
+
+113          22 LOAD_GLOBAL              0 (isinstance)
+             24 LOAD_FAST                1 (a)
+             26 LOAD_GLOBAL              2 (bytes)
+             28 CALL_FUNCTION            2
+             30 POP_JUMP_IF_FALSE       42
+             32 LOAD_FAST                1 (a)
+             34 LOAD_METHOD              3 (decode)
+             36 LOAD_CONST               2 ('latin-1')
+             38 CALL_METHOD              1
+             40 JUMP_FORWARD             2 (to 44)
+        >>   42 LOAD_FAST                1 (a)
+        >>   44 STORE_FAST               1 (a)
+
+114          46 LOAD_FAST                1 (a)
+             48 POP_JUMP_IF_FALSE       66
+             50 LOAD_GLOBAL              4 (ord)
+             52 LOAD_FAST                1 (a)
+             54 LOAD_CONST               3 (0)
+             56 BINARY_SUBSCR
+             58 CALL_FUNCTION            1
+             60 LOAD_CONST               4 (7)
+             62 BINARY_LSHIFT
+             64 JUMP_FORWARD             2 (to 68)
+        >>   66 LOAD_CONST               3 (0)
+        >>   68 STORE_FAST               3 (x)
+
+115          70 SETUP_LOOP              34 (to 106)
+             72 LOAD_GLOBAL              5 (map)
+             74 LOAD_GLOBAL              4 (ord)
+             76 LOAD_FAST                1 (a)
+             78 CALL_FUNCTION            2
+             80 GET_ITER
+        >>   82 FOR_ITER                20 (to 104)
+             84 STORE_FAST               4 (c)
+
+116          86 LOAD_CONST               5 (1000003)
+             88 LOAD_FAST                3 (x)
+             90 BINARY_MULTIPLY
+             92 LOAD_FAST                4 (c)
+             94 BINARY_XOR
+             96 LOAD_CONST               6 (18446744073709551615)
+             98 BINARY_AND
+            100 STORE_FAST               3 (x)
+            102 JUMP_ABSOLUTE           82
+        >>  104 POP_BLOCK
+
+117     >>  106 LOAD_FAST                3 (x)
+            108 LOAD_GLOBAL              6 (len)
+            110 LOAD_FAST                1 (a)
+            112 CALL_FUNCTION            1
+            114 INPLACE_XOR
+            116 STORE_FAST               3 (x)
+
+118         118 LOAD_FAST                3 (x)
+            120 LOAD_CONST               7 (-1)
+            122 COMPARE_OP               2 (==)
+            124 POP_JUMP_IF_FALSE      130
+            126 LOAD_CONST               8 (-2)
+            128 JUMP_FORWARD             2 (to 132)
+        >>  130 LOAD_FAST                3 (x)
+        >>  132 STORE_FAST               1 (a)
+
+120     >>  134 LOAD_FAST                2 (version)
+            136 LOAD_CONST               9 (2)
+            138 COMPARE_OP               2 (==)
+            140 POP_JUMP_IF_FALSE      204
+            142 LOAD_GLOBAL              0 (isinstance)
+            144 LOAD_FAST                1 (a)
+            146 LOAD_GLOBAL              1 (str)
+            148 LOAD_GLOBAL              2 (bytes)
+            150 LOAD_GLOBAL              7 (bytearray)
+            152 BUILD_TUPLE              3
+            154 CALL_FUNCTION            2
+            156 POP_JUMP_IF_FALSE      204
+
+121         158 LOAD_GLOBAL              0 (isinstance)
+            160 LOAD_FAST                1 (a)
+            162 LOAD_GLOBAL              1 (str)
+            164 CALL_FUNCTION            2
+            166 POP_JUMP_IF_FALSE      176
+
+122         168 LOAD_FAST                1 (a)
+            170 LOAD_METHOD              8 (encode)
+            172 CALL_METHOD              0
+            174 STORE_FAST               1 (a)
+
+123     >>  176 LOAD_FAST                1 (a)
+            178 LOAD_GLOBAL              9 (_sha512)
+            180 LOAD_FAST                1 (a)
+            182 CALL_FUNCTION            1
+            184 LOAD_METHOD             10 (digest)
+            186 CALL_METHOD              0
+            188 INPLACE_ADD
+            190 STORE_FAST               1 (a)
+
+124         192 LOAD_GLOBAL             11 (int)
+            194 LOAD_METHOD             12 (from_bytes)
+            196 LOAD_FAST                1 (a)
+            198 LOAD_CONST              10 ('big')
+            200 CALL_METHOD              2
+            202 STORE_FAST               1 (a)
+
+126     >>  204 LOAD_GLOBAL             13 (super)
+            206 CALL_FUNCTION            0
+            208 LOAD_METHOD             14 (seed)
+            210 LOAD_FAST                1 (a)
+            212 CALL_METHOD              1
+            214 POP_TOP
+
+127         216 LOAD_CONST              11 (None)
+            218 LOAD_FAST                0 (self)
+            220 STORE_ATTR              15 (gauss_next)
+            222 LOAD_CONST              11 (None)
+            224 RETURN_VALUE
+
+Disassembly of setstate:
+135           0 LOAD_FAST                1 (state)
+              2 LOAD_CONST               1 (0)
+              4 BINARY_SUBSCR
+              6 STORE_FAST               2 (version)
+
+136           8 LOAD_FAST                2 (version)
+             10 LOAD_CONST               2 (3)
+             12 COMPARE_OP               2 (==)
+             14 POP_JUMP_IF_FALSE       42
+
+137          16 LOAD_FAST                1 (state)
+             18 UNPACK_SEQUENCE          3
+             20 STORE_FAST               2 (version)
+             22 STORE_FAST               3 (internalstate)
+             24 LOAD_FAST                0 (self)
+             26 STORE_ATTR               0 (gauss_next)
+
+138          28 LOAD_GLOBAL              1 (super)
+             30 CALL_FUNCTION            0
+             32 LOAD_METHOD              2 (setstate)
+             34 LOAD_FAST                3 (internalstate)
+             36 CALL_METHOD              1
+             38 POP_TOP
+             40 JUMP_FORWARD           116 (to 158)
+
+139     >>   42 LOAD_FAST                2 (version)
+             44 LOAD_CONST               3 (2)
+             46 COMPARE_OP               2 (==)
+             48 POP_JUMP_IF_FALSE      140
+
+140          50 LOAD_FAST                1 (state)
+             52 UNPACK_SEQUENCE          3
+             54 STORE_FAST               2 (version)
+             56 STORE_FAST               3 (internalstate)
+             58 LOAD_FAST                0 (self)
+             60 STORE_ATTR               0 (gauss_next)
+
+145          62 SETUP_EXCEPT            22 (to 86)
+
+146          64 LOAD_GLOBAL              3 (tuple)
+             66 LOAD_CONST               4 (<code object <genexpr> at 0x000001B959A335D0, file "C:\Program Files\Python37\lib\random.py", line 146>)
+             68 LOAD_CONST               5 ('Random.setstate.<locals>.<genexpr>')
+             70 MAKE_FUNCTION            0
+             72 LOAD_FAST                3 (internalstate)
+             74 GET_ITER
+             76 CALL_FUNCTION            1
+             78 CALL_FUNCTION            1
+             80 STORE_FAST               3 (internalstate)
+             82 POP_BLOCK
+             84 JUMP_FORWARD            40 (to 126)
+
+147     >>   86 DUP_TOP
+             88 LOAD_GLOBAL              4 (ValueError)
+             90 COMPARE_OP              10 (exception match)
+             92 POP_JUMP_IF_FALSE      124
+             94 POP_TOP
+             96 STORE_FAST               4 (e)
+             98 POP_TOP
+            100 SETUP_FINALLY           10 (to 112)
+
+148         102 LOAD_GLOBAL              5 (TypeError)
+            104 LOAD_FAST                4 (e)
+            106 RAISE_VARARGS            2
+            108 POP_BLOCK
+            110 LOAD_CONST               6 (None)
+        >>  112 LOAD_CONST               6 (None)
+            114 STORE_FAST               4 (e)
+            116 DELETE_FAST              4 (e)
+            118 END_FINALLY
+            120 POP_EXCEPT
+            122 JUMP_FORWARD             2 (to 126)
+        >>  124 END_FINALLY
+
+149     >>  126 LOAD_GLOBAL              1 (super)
+            128 CALL_FUNCTION            0
+            130 LOAD_METHOD              2 (setstate)
+            132 LOAD_FAST                3 (internalstate)
+            134 CALL_METHOD              1
+            136 POP_TOP
+            138 JUMP_FORWARD            18 (to 158)
+
+151     >>  140 LOAD_GLOBAL              4 (ValueError)
+            142 LOAD_CONST               7 ('state with version %s passed to Random.setstate() of version %s')
+
+153         144 LOAD_FAST                2 (version)
+            146 LOAD_FAST                0 (self)
+            148 LOAD_ATTR                6 (VERSION)
+            150 BUILD_TUPLE              2
+            152 BINARY_MODULO
+            154 CALL_FUNCTION            1
+            156 RAISE_VARARGS            1
+        >>  158 LOAD_CONST               6 (None)
+            160 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B959A335D0, file "C:\Program Files\Python37\lib\random.py", line 146>:
+146           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                14 (to 18)
+              4 STORE_FAST               1 (x)
+              6 LOAD_FAST                1 (x)
+              8 LOAD_CONST               0 (4294967296)
+             10 BINARY_MODULO
+             12 YIELD_VALUE
+             14 POP_TOP
+             16 JUMP_ABSOLUTE            2
+        >>   18 LOAD_CONST               1 (None)
+             20 RETURN_VALUE
+
+Disassembly of shuffle:
+273           0 LOAD_FAST                2 (random)
+              2 LOAD_CONST               1 (None)
+              4 COMPARE_OP               8 (is)
+              6 POP_JUMP_IF_FALSE       82
+
+274           8 LOAD_FAST                0 (self)
+             10 LOAD_ATTR                0 (_randbelow)
+             12 STORE_FAST               3 (randbelow)
+
+275          14 SETUP_LOOP             142 (to 158)
+             16 LOAD_GLOBAL              1 (reversed)
+             18 LOAD_GLOBAL              2 (range)
+             20 LOAD_CONST               2 (1)
+             22 LOAD_GLOBAL              3 (len)
+             24 LOAD_FAST                1 (x)
+             26 CALL_FUNCTION            1
+             28 CALL_FUNCTION            2
+             30 CALL_FUNCTION            1
+             32 GET_ITER
+        >>   34 FOR_ITER                42 (to 78)
+             36 STORE_FAST               4 (i)
+
+277          38 LOAD_FAST                3 (randbelow)
+             40 LOAD_FAST                4 (i)
+             42 LOAD_CONST               2 (1)
+             44 BINARY_ADD
+             46 CALL_FUNCTION            1
+             48 STORE_FAST               5 (j)
+
+278          50 LOAD_FAST                1 (x)
+             52 LOAD_FAST                5 (j)
+             54 BINARY_SUBSCR
+             56 LOAD_FAST                1 (x)
+             58 LOAD_FAST                4 (i)
+             60 BINARY_SUBSCR
+             62 ROT_TWO
+             64 LOAD_FAST                1 (x)
+             66 LOAD_FAST                4 (i)
+             68 STORE_SUBSCR
+             70 LOAD_FAST                1 (x)
+             72 LOAD_FAST                5 (j)
+             74 STORE_SUBSCR
+             76 JUMP_ABSOLUTE           34
+        >>   78 POP_BLOCK
+             80 JUMP_FORWARD            76 (to 158)
+
+280     >>   82 LOAD_GLOBAL              4 (int)
+             84 STORE_FAST               6 (_int)
+
+281          86 SETUP_LOOP              70 (to 158)
+             88 LOAD_GLOBAL              1 (reversed)
+             90 LOAD_GLOBAL              2 (range)
+             92 LOAD_CONST               2 (1)
+             94 LOAD_GLOBAL              3 (len)
+             96 LOAD_FAST                1 (x)
+             98 CALL_FUNCTION            1
+            100 CALL_FUNCTION            2
+            102 CALL_FUNCTION            1
+            104 GET_ITER
+        >>  106 FOR_ITER                48 (to 156)
+            108 STORE_FAST               4 (i)
+
+283         110 LOAD_FAST                6 (_int)
+            112 LOAD_FAST                2 (random)
+            114 CALL_FUNCTION            0
+            116 LOAD_FAST                4 (i)
+            118 LOAD_CONST               2 (1)
+            120 BINARY_ADD
+            122 BINARY_MULTIPLY
+            124 CALL_FUNCTION            1
+            126 STORE_FAST               5 (j)
+
+284         128 LOAD_FAST                1 (x)
+            130 LOAD_FAST                5 (j)
+            132 BINARY_SUBSCR
+            134 LOAD_FAST                1 (x)
+            136 LOAD_FAST                4 (i)
+            138 BINARY_SUBSCR
+            140 ROT_TWO
+            142 LOAD_FAST                1 (x)
+            144 LOAD_FAST                4 (i)
+            146 STORE_SUBSCR
+            148 LOAD_FAST                1 (x)
+            150 LOAD_FAST                5 (j)
+            152 STORE_SUBSCR
+            154 JUMP_ABSOLUTE          106
+        >>  156 POP_BLOCK
+        >>  158 LOAD_CONST               1 (None)
+            160 RETURN_VALUE
+
+Disassembly of triangular:
+387           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (random)
+              4 CALL_METHOD              0
+              6 STORE_FAST               4 (u)
+
+388           8 SETUP_EXCEPT            32 (to 42)
+
+389          10 LOAD_FAST                3 (mode)
+             12 LOAD_CONST               1 (None)
+             14 COMPARE_OP               8 (is)
+             16 POP_JUMP_IF_FALSE       22
+             18 LOAD_CONST               2 (0.5)
+             20 JUMP_FORWARD            14 (to 36)
+        >>   22 LOAD_FAST                3 (mode)
+             24 LOAD_FAST                1 (low)
+             26 BINARY_SUBTRACT
+             28 LOAD_FAST                2 (high)
+             30 LOAD_FAST                1 (low)
+             32 BINARY_SUBTRACT
+             34 BINARY_TRUE_DIVIDE
+        >>   36 STORE_FAST               5 (c)
+             38 POP_BLOCK
+             40 JUMP_FORWARD            20 (to 62)
+
+390     >>   42 DUP_TOP
+             44 LOAD_GLOBAL              1 (ZeroDivisionError)
+             46 COMPARE_OP              10 (exception match)
+             48 POP_JUMP_IF_FALSE       60
+             50 POP_TOP
+             52 POP_TOP
+             54 POP_TOP
+
+391          56 LOAD_FAST                1 (low)
+             58 RETURN_VALUE
+        >>   60 END_FINALLY
+
+392     >>   62 LOAD_FAST                4 (u)
+             64 LOAD_FAST                5 (c)
+             66 COMPARE_OP               4 (>)
+             68 POP_JUMP_IF_FALSE       96
+
+393          70 LOAD_CONST               3 (1.0)
+             72 LOAD_FAST                4 (u)
+             74 BINARY_SUBTRACT
+             76 STORE_FAST               4 (u)
+
+394          78 LOAD_CONST               3 (1.0)
+             80 LOAD_FAST                5 (c)
+             82 BINARY_SUBTRACT
+             84 STORE_FAST               5 (c)
+
+395          86 LOAD_FAST                2 (high)
+             88 LOAD_FAST                1 (low)
+             90 ROT_TWO
+             92 STORE_FAST               1 (low)
+             94 STORE_FAST               2 (high)
+
+396     >>   96 LOAD_FAST                1 (low)
+             98 LOAD_FAST                2 (high)
+            100 LOAD_FAST                1 (low)
+            102 BINARY_SUBTRACT
+            104 LOAD_GLOBAL              2 (_sqrt)
+            106 LOAD_FAST                4 (u)
+            108 LOAD_FAST                5 (c)
+            110 BINARY_MULTIPLY
+            112 CALL_FUNCTION            1
+            114 BINARY_MULTIPLY
+            116 BINARY_ADD
+            118 RETURN_VALUE
+
+Disassembly of uniform:
+374           0 LOAD_FAST                1 (a)
+              2 LOAD_FAST                2 (b)
+              4 LOAD_FAST                1 (a)
+              6 BINARY_SUBTRACT
+              8 LOAD_FAST                0 (self)
+             10 LOAD_METHOD              0 (random)
+             12 CALL_METHOD              0
+             14 BINARY_MULTIPLY
+             16 BINARY_ADD
+             18 RETURN_VALUE
+
+Disassembly of vonmisesvariate:
+476           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_FAST               3 (random)
+
+477           6 LOAD_FAST                2 (kappa)
+              8 LOAD_CONST               1 (1e-06)
+             10 COMPARE_OP               1 (<=)
+             12 POP_JUMP_IF_FALSE       24
+
+478          14 LOAD_GLOBAL              1 (TWOPI)
+             16 LOAD_FAST                3 (random)
+             18 CALL_FUNCTION            0
+             20 BINARY_MULTIPLY
+             22 RETURN_VALUE
+
+480     >>   24 LOAD_CONST               2 (0.5)
+             26 LOAD_FAST                2 (kappa)
+             28 BINARY_TRUE_DIVIDE
+             30 STORE_FAST               4 (s)
+
+481          32 LOAD_FAST                4 (s)
+             34 LOAD_GLOBAL              2 (_sqrt)
+             36 LOAD_CONST               3 (1.0)
+             38 LOAD_FAST                4 (s)
+             40 LOAD_FAST                4 (s)
+             42 BINARY_MULTIPLY
+             44 BINARY_ADD
+             46 CALL_FUNCTION            1
+             48 BINARY_ADD
+             50 STORE_FAST               5 (r)
+
+483          52 SETUP_LOOP              78 (to 132)
+
+484     >>   54 LOAD_FAST                3 (random)
+             56 CALL_FUNCTION            0
+             58 STORE_FAST               6 (u1)
+
+485          60 LOAD_GLOBAL              3 (_cos)
+             62 LOAD_GLOBAL              4 (_pi)
+             64 LOAD_FAST                6 (u1)
+             66 BINARY_MULTIPLY
+             68 CALL_FUNCTION            1
+             70 STORE_FAST               7 (z)
+
+487          72 LOAD_FAST                7 (z)
+             74 LOAD_FAST                5 (r)
+             76 LOAD_FAST                7 (z)
+             78 BINARY_ADD
+             80 BINARY_TRUE_DIVIDE
+             82 STORE_FAST               8 (d)
+
+488          84 LOAD_FAST                3 (random)
+             86 CALL_FUNCTION            0
+             88 STORE_FAST               9 (u2)
+
+489          90 LOAD_FAST                9 (u2)
+             92 LOAD_CONST               3 (1.0)
+             94 LOAD_FAST                8 (d)
+             96 LOAD_FAST                8 (d)
+             98 BINARY_MULTIPLY
+            100 BINARY_SUBTRACT
+            102 COMPARE_OP               0 (<)
+            104 POP_JUMP_IF_TRUE       126
+            106 LOAD_FAST                9 (u2)
+            108 LOAD_CONST               3 (1.0)
+            110 LOAD_FAST                8 (d)
+            112 BINARY_SUBTRACT
+            114 LOAD_GLOBAL              5 (_exp)
+            116 LOAD_FAST                8 (d)
+            118 CALL_FUNCTION            1
+            120 BINARY_MULTIPLY
+            122 COMPARE_OP               1 (<=)
+            124 POP_JUMP_IF_FALSE       54
+
+490     >>  126 BREAK_LOOP
+            128 JUMP_ABSOLUTE           54
+            130 POP_BLOCK
+
+492     >>  132 LOAD_CONST               3 (1.0)
+            134 LOAD_FAST                5 (r)
+            136 BINARY_TRUE_DIVIDE
+            138 STORE_FAST              10 (q)
+
+493         140 LOAD_FAST               10 (q)
+            142 LOAD_FAST                7 (z)
+            144 BINARY_ADD
+            146 LOAD_CONST               3 (1.0)
+            148 LOAD_FAST               10 (q)
+            150 LOAD_FAST                7 (z)
+            152 BINARY_MULTIPLY
+            154 BINARY_ADD
+            156 BINARY_TRUE_DIVIDE
+            158 STORE_FAST              11 (f)
+
+494         160 LOAD_FAST                3 (random)
+            162 CALL_FUNCTION            0
+            164 STORE_FAST              12 (u3)
+
+495         166 LOAD_FAST               12 (u3)
+            168 LOAD_CONST               2 (0.5)
+            170 COMPARE_OP               4 (>)
+            172 POP_JUMP_IF_FALSE      192
+
+496         174 LOAD_FAST                1 (mu)
+            176 LOAD_GLOBAL              6 (_acos)
+            178 LOAD_FAST               11 (f)
+            180 CALL_FUNCTION            1
+            182 BINARY_ADD
+            184 LOAD_GLOBAL              1 (TWOPI)
+            186 BINARY_MODULO
+            188 STORE_FAST              13 (theta)
+            190 JUMP_FORWARD            16 (to 208)
+
+498     >>  192 LOAD_FAST                1 (mu)
+            194 LOAD_GLOBAL              6 (_acos)
+            196 LOAD_FAST               11 (f)
+            198 CALL_FUNCTION            1
+            200 BINARY_SUBTRACT
+            202 LOAD_GLOBAL              1 (TWOPI)
+            204 BINARY_MODULO
+            206 STORE_FAST              13 (theta)
+
+500     >>  208 LOAD_FAST               13 (theta)
+            210 RETURN_VALUE
+
+Disassembly of weibullvariate:
+664           0 LOAD_CONST               1 (1.0)
+              2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              0 (random)
+              6 CALL_METHOD              0
+              8 BINARY_SUBTRACT
+             10 STORE_FAST               3 (u)
+
+665          12 LOAD_FAST                1 (alpha)
+             14 LOAD_GLOBAL              1 (_log)
+             16 LOAD_FAST                3 (u)
+             18 CALL_FUNCTION            1
+             20 UNARY_NEGATIVE
+             22 LOAD_CONST               1 (1.0)
+             24 LOAD_FAST                2 (beta)
+             26 BINARY_TRUE_DIVIDE
+             28 BINARY_POWER
+             30 BINARY_MULTIPLY
+             32 RETURN_VALUE
+
+
+Disassembly of SystemRandom:
+Disassembly of _notimplemented:
+697           0 LOAD_GLOBAL              0 (NotImplementedError)
+              2 LOAD_CONST               1 ('System entropy source does not have state.')
+              4 CALL_FUNCTION            1
+              6 RAISE_VARARGS            1
+              8 LOAD_CONST               2 (None)
+             10 RETURN_VALUE
+
+Disassembly of getrandbits:
+683           0 LOAD_FAST                1 (k)
+              2 LOAD_CONST               1 (0)
+              4 COMPARE_OP               1 (<=)
+              6 POP_JUMP_IF_FALSE       16
+
+684           8 LOAD_GLOBAL              0 (ValueError)
+             10 LOAD_CONST               2 ('number of bits must be greater than zero')
+             12 CALL_FUNCTION            1
+             14 RAISE_VARARGS            1
+
+685     >>   16 LOAD_FAST                1 (k)
+             18 LOAD_GLOBAL              1 (int)
+             20 LOAD_FAST                1 (k)
+             22 CALL_FUNCTION            1
+             24 COMPARE_OP               3 (!=)
+             26 POP_JUMP_IF_FALSE       36
+
+686          28 LOAD_GLOBAL              2 (TypeError)
+             30 LOAD_CONST               3 ('number of bits should be an integer')
+             32 CALL_FUNCTION            1
+             34 RAISE_VARARGS            1
+
+687     >>   36 LOAD_FAST                1 (k)
+             38 LOAD_CONST               4 (7)
+             40 BINARY_ADD
+             42 LOAD_CONST               5 (8)
+             44 BINARY_FLOOR_DIVIDE
+             46 STORE_FAST               2 (numbytes)
+
+688          48 LOAD_GLOBAL              1 (int)
+             50 LOAD_METHOD              3 (from_bytes)
+             52 LOAD_GLOBAL              4 (_urandom)
+             54 LOAD_FAST                2 (numbytes)
+             56 CALL_FUNCTION            1
+             58 LOAD_CONST               6 ('big')
+             60 CALL_METHOD              2
+             62 STORE_FAST               3 (x)
+
+689          64 LOAD_FAST                3 (x)
+             66 LOAD_FAST                2 (numbytes)
+             68 LOAD_CONST               5 (8)
+             70 BINARY_MULTIPLY
+             72 LOAD_FAST                1 (k)
+             74 BINARY_SUBTRACT
+             76 BINARY_RSHIFT
+             78 RETURN_VALUE
+
+Disassembly of getstate:
+697           0 LOAD_GLOBAL              0 (NotImplementedError)
+              2 LOAD_CONST               1 ('System entropy source does not have state.')
+              4 CALL_FUNCTION            1
+              6 RAISE_VARARGS            1
+              8 LOAD_CONST               2 (None)
+             10 RETURN_VALUE
+
+Disassembly of random:
+679           0 LOAD_GLOBAL              0 (int)
+              2 LOAD_METHOD              1 (from_bytes)
+              4 LOAD_GLOBAL              2 (_urandom)
+              6 LOAD_CONST               1 (7)
+              8 CALL_FUNCTION            1
+             10 LOAD_CONST               2 ('big')
+             12 CALL_METHOD              2
+             14 LOAD_CONST               3 (3)
+             16 BINARY_RSHIFT
+             18 LOAD_GLOBAL              3 (RECIP_BPF)
+             20 BINARY_MULTIPLY
+             22 RETURN_VALUE
+
+Disassembly of seed:
+693           0 LOAD_CONST               1 (None)
+              2 RETURN_VALUE
+
+Disassembly of setstate:
+697           0 LOAD_GLOBAL              0 (NotImplementedError)
+              2 LOAD_CONST               1 ('System entropy source does not have state.')
+              4 CALL_FUNCTION            1
+              6 RAISE_VARARGS            1
+              8 LOAD_CONST               2 (None)
+             10 RETURN_VALUE
+
+
+Disassembly of _BuiltinMethodType:
+
+Disassembly of _MethodType:
+Sorry: don't know how to disassemble member_descriptor objects
+
+Disassembly of _Sequence:
+Disassembly of __contains__:
+890           0 SETUP_LOOP              32 (to 34)
+              2 LOAD_FAST                0 (self)
+              4 GET_ITER
+        >>    6 FOR_ITER                24 (to 32)
+              8 STORE_FAST               2 (v)
+
+891          10 LOAD_FAST                2 (v)
+             12 LOAD_FAST                1 (value)
+             14 COMPARE_OP               8 (is)
+             16 POP_JUMP_IF_TRUE        26
+             18 LOAD_FAST                2 (v)
+             20 LOAD_FAST                1 (value)
+             22 COMPARE_OP               2 (==)
+             24 POP_JUMP_IF_FALSE        6
+
+892     >>   26 LOAD_CONST               1 (True)
+             28 RETURN_VALUE
+             30 JUMP_ABSOLUTE            6
+        >>   32 POP_BLOCK
+
+893     >>   34 LOAD_CONST               2 (False)
+             36 RETURN_VALUE
+
+Disassembly of __getitem__:
+877           0 LOAD_GLOBAL              0 (IndexError)
+              2 RAISE_VARARGS            1
+              4 LOAD_CONST               0 (None)
+              6 RETURN_VALUE
+
+Disassembly of __iter__:
+880           0 LOAD_CONST               1 (0)
+              2 STORE_FAST               1 (i)
+
+881           4 SETUP_EXCEPT            32 (to 38)
+
+882           6 SETUP_LOOP              26 (to 34)
+
+883     >>    8 LOAD_FAST                0 (self)
+             10 LOAD_FAST                1 (i)
+             12 BINARY_SUBSCR
+             14 STORE_FAST               2 (v)
+
+884          16 LOAD_FAST                2 (v)
+             18 YIELD_VALUE
+             20 POP_TOP
+
+885          22 LOAD_FAST                1 (i)
+             24 LOAD_CONST               2 (1)
+             26 INPLACE_ADD
+             28 STORE_FAST               1 (i)
+             30 JUMP_ABSOLUTE            8
+             32 POP_BLOCK
+        >>   34 POP_BLOCK
+             36 JUMP_FORWARD            20 (to 58)
+
+886     >>   38 DUP_TOP
+             40 LOAD_GLOBAL              0 (IndexError)
+             42 COMPARE_OP              10 (exception match)
+             44 POP_JUMP_IF_FALSE       56
+             46 POP_TOP
+             48 POP_TOP
+             50 POP_TOP
+
+887          52 LOAD_CONST               0 (None)
+             54 RETURN_VALUE
+        >>   56 END_FINALLY
+        >>   58 LOAD_CONST               0 (None)
+             60 RETURN_VALUE
+
+Disassembly of __reversed__:
+896           0 SETUP_LOOP              34 (to 36)
+              2 LOAD_GLOBAL              0 (reversed)
+              4 LOAD_GLOBAL              1 (range)
+              6 LOAD_GLOBAL              2 (len)
+              8 LOAD_FAST                0 (self)
+             10 CALL_FUNCTION            1
+             12 CALL_FUNCTION            1
+             14 CALL_FUNCTION            1
+             16 GET_ITER
+        >>   18 FOR_ITER                14 (to 34)
+             20 STORE_FAST               1 (i)
+
+897          22 LOAD_FAST                0 (self)
+             24 LOAD_FAST                1 (i)
+             26 BINARY_SUBSCR
+             28 YIELD_VALUE
+             30 POP_TOP
+             32 JUMP_ABSOLUTE           18
+        >>   34 POP_BLOCK
+        >>   36 LOAD_CONST               0 (None)
+             38 RETURN_VALUE
+
+Disassembly of count:
+924           0 LOAD_GLOBAL              0 (sum)
+              2 LOAD_CLOSURE             0 (value)
+              4 BUILD_TUPLE              1
+              6 LOAD_CONST               1 (<code object <genexpr> at 0x000001B9598E0DB0, file "C:\Program Files\Python37\lib\_collections_abc.py", line 924>)
+              8 LOAD_CONST               2 ('Sequence.count.<locals>.<genexpr>')
+             10 MAKE_FUNCTION            8
+             12 LOAD_FAST                0 (self)
+             14 GET_ITER
+             16 CALL_FUNCTION            1
+             18 CALL_FUNCTION            1
+             20 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B9598E0DB0, file "C:\Program Files\Python37\lib\_collections_abc.py", line 924>:
+924           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                26 (to 30)
+              4 STORE_FAST               1 (v)
+              6 LOAD_FAST                1 (v)
+              8 LOAD_DEREF               0 (value)
+             10 COMPARE_OP               8 (is)
+             12 POP_JUMP_IF_TRUE        22
+             14 LOAD_FAST                1 (v)
+             16 LOAD_DEREF               0 (value)
+             18 COMPARE_OP               2 (==)
+             20 POP_JUMP_IF_FALSE        2
+        >>   22 LOAD_CONST               0 (1)
+             24 YIELD_VALUE
+             26 POP_TOP
+             28 JUMP_ABSOLUTE            2
+        >>   30 LOAD_CONST               1 (None)
+             32 RETURN_VALUE
+
+Disassembly of index:
+906           0 LOAD_FAST                2 (start)
+              2 LOAD_CONST               1 (None)
+              4 COMPARE_OP               9 (is not)
+              6 POP_JUMP_IF_FALSE       34
+              8 LOAD_FAST                2 (start)
+             10 LOAD_CONST               2 (0)
+             12 COMPARE_OP               0 (<)
+             14 POP_JUMP_IF_FALSE       34
+
+907          16 LOAD_GLOBAL              0 (max)
+             18 LOAD_GLOBAL              1 (len)
+             20 LOAD_FAST                0 (self)
+             22 CALL_FUNCTION            1
+             24 LOAD_FAST                2 (start)
+             26 BINARY_ADD
+             28 LOAD_CONST               2 (0)
+             30 CALL_FUNCTION            2
+             32 STORE_FAST               2 (start)
+
+908     >>   34 LOAD_FAST                3 (stop)
+             36 LOAD_CONST               1 (None)
+             38 COMPARE_OP               9 (is not)
+             40 POP_JUMP_IF_FALSE       62
+             42 LOAD_FAST                3 (stop)
+             44 LOAD_CONST               2 (0)
+             46 COMPARE_OP               0 (<)
+             48 POP_JUMP_IF_FALSE       62
+
+909          50 LOAD_FAST                3 (stop)
+             52 LOAD_GLOBAL              1 (len)
+             54 LOAD_FAST                0 (self)
+             56 CALL_FUNCTION            1
+             58 INPLACE_ADD
+             60 STORE_FAST               3 (stop)
+
+911     >>   62 LOAD_FAST                2 (start)
+             64 STORE_FAST               4 (i)
+
+912          66 SETUP_LOOP              84 (to 152)
+        >>   68 LOAD_FAST                3 (stop)
+             70 LOAD_CONST               1 (None)
+             72 COMPARE_OP               8 (is)
+             74 POP_JUMP_IF_TRUE        84
+             76 LOAD_FAST                4 (i)
+             78 LOAD_FAST                3 (stop)
+             80 COMPARE_OP               0 (<)
+             82 POP_JUMP_IF_FALSE      150
+
+913     >>   84 SETUP_EXCEPT            32 (to 118)
+
+914          86 LOAD_FAST                0 (self)
+             88 LOAD_FAST                4 (i)
+             90 BINARY_SUBSCR
+             92 STORE_FAST               5 (v)
+
+915          94 LOAD_FAST                5 (v)
+             96 LOAD_FAST                1 (value)
+             98 COMPARE_OP               8 (is)
+            100 POP_JUMP_IF_TRUE       110
+            102 LOAD_FAST                5 (v)
+            104 LOAD_FAST                1 (value)
+            106 COMPARE_OP               2 (==)
+            108 POP_JUMP_IF_FALSE      114
+
+916     >>  110 LOAD_FAST                4 (i)
+            112 RETURN_VALUE
+        >>  114 POP_BLOCK
+            116 JUMP_FORWARD            22 (to 140)
+
+917     >>  118 DUP_TOP
+            120 LOAD_GLOBAL              2 (IndexError)
+            122 COMPARE_OP              10 (exception match)
+            124 POP_JUMP_IF_FALSE      138
+            126 POP_TOP
+            128 POP_TOP
+            130 POP_TOP
+
+918         132 BREAK_LOOP
+            134 POP_EXCEPT
+            136 JUMP_FORWARD             2 (to 140)
+        >>  138 END_FINALLY
+
+919     >>  140 LOAD_FAST                4 (i)
+            142 LOAD_CONST               3 (1)
+            144 INPLACE_ADD
+            146 STORE_FAST               4 (i)
+            148 JUMP_ABSOLUTE           68
+        >>  150 POP_BLOCK
+
+920     >>  152 LOAD_GLOBAL              3 (ValueError)
+            154 RAISE_VARARGS            1
+            156 LOAD_CONST               1 (None)
+            158 RETURN_VALUE
+
+
+Disassembly of _Set:
+Disassembly of __and__:
+475           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Iterable)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+476          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+477     >>   14 LOAD_DEREF               0 (self)
+             16 LOAD_METHOD              3 (_from_iterable)
+             18 LOAD_CLOSURE             0 (self)
+             20 BUILD_TUPLE              1
+             22 LOAD_CONST               1 (<code object <genexpr> at 0x000001B9598D7C90, file "C:\Program Files\Python37\lib\_collections_abc.py", line 477>)
+             24 LOAD_CONST               2 ('Set.__and__.<locals>.<genexpr>')
+             26 MAKE_FUNCTION            8
+             28 LOAD_FAST                1 (other)
+             30 GET_ITER
+             32 CALL_FUNCTION            1
+             34 CALL_METHOD              1
+             36 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B9598D7C90, file "C:\Program Files\Python37\lib\_collections_abc.py", line 477>:
+477           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                18 (to 22)
+              4 STORE_FAST               1 (value)
+              6 LOAD_FAST                1 (value)
+              8 LOAD_DEREF               0 (self)
+             10 COMPARE_OP               6 (in)
+             12 POP_JUMP_IF_FALSE        2
+             14 LOAD_FAST                1 (value)
+             16 YIELD_VALUE
+             18 POP_TOP
+             20 JUMP_ABSOLUTE            2
+        >>   22 LOAD_CONST               0 (None)
+             24 RETURN_VALUE
+
+Disassembly of __eq__:
+461           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+462          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+463     >>   14 LOAD_GLOBAL              3 (len)
+             16 LOAD_FAST                0 (self)
+             18 CALL_FUNCTION            1
+             20 LOAD_GLOBAL              3 (len)
+             22 LOAD_FAST                1 (other)
+             24 CALL_FUNCTION            1
+             26 COMPARE_OP               2 (==)
+             28 JUMP_IF_FALSE_OR_POP    38
+             30 LOAD_FAST                0 (self)
+             32 LOAD_METHOD              4 (__le__)
+             34 LOAD_FAST                1 (other)
+             36 CALL_METHOD              1
+        >>   38 RETURN_VALUE
+
+Disassembly of __ge__:
+451           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+452          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+453     >>   14 LOAD_GLOBAL              3 (len)
+             16 LOAD_FAST                0 (self)
+             18 CALL_FUNCTION            1
+             20 LOAD_GLOBAL              3 (len)
+             22 LOAD_FAST                1 (other)
+             24 CALL_FUNCTION            1
+             26 COMPARE_OP               0 (<)
+             28 POP_JUMP_IF_FALSE       34
+
+454          30 LOAD_CONST               1 (False)
+             32 RETURN_VALUE
+
+455     >>   34 SETUP_LOOP              24 (to 60)
+             36 LOAD_FAST                1 (other)
+             38 GET_ITER
+        >>   40 FOR_ITER                16 (to 58)
+             42 STORE_FAST               2 (elem)
+
+456          44 LOAD_FAST                2 (elem)
+             46 LOAD_FAST                0 (self)
+             48 COMPARE_OP               7 (not in)
+             50 POP_JUMP_IF_FALSE       40
+
+457          52 LOAD_CONST               1 (False)
+             54 RETURN_VALUE
+             56 JUMP_ABSOLUTE           40
+        >>   58 POP_BLOCK
+
+458     >>   60 LOAD_CONST               2 (True)
+             62 RETURN_VALUE
+
+Disassembly of __gt__:
+446           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+447          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+448     >>   14 LOAD_GLOBAL              3 (len)
+             16 LOAD_FAST                0 (self)
+             18 CALL_FUNCTION            1
+             20 LOAD_GLOBAL              3 (len)
+             22 LOAD_FAST                1 (other)
+             24 CALL_FUNCTION            1
+             26 COMPARE_OP               4 (>)
+             28 JUMP_IF_FALSE_OR_POP    38
+             30 LOAD_FAST                0 (self)
+             32 LOAD_METHOD              4 (__ge__)
+             34 LOAD_FAST                1 (other)
+             36 CALL_METHOD              1
+        >>   38 RETURN_VALUE
+
+Disassembly of __le__:
+431           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+432          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+433     >>   14 LOAD_GLOBAL              3 (len)
+             16 LOAD_FAST                0 (self)
+             18 CALL_FUNCTION            1
+             20 LOAD_GLOBAL              3 (len)
+             22 LOAD_FAST                1 (other)
+             24 CALL_FUNCTION            1
+             26 COMPARE_OP               4 (>)
+             28 POP_JUMP_IF_FALSE       34
+
+434          30 LOAD_CONST               1 (False)
+             32 RETURN_VALUE
+
+435     >>   34 SETUP_LOOP              24 (to 60)
+             36 LOAD_FAST                0 (self)
+             38 GET_ITER
+        >>   40 FOR_ITER                16 (to 58)
+             42 STORE_FAST               2 (elem)
+
+436          44 LOAD_FAST                2 (elem)
+             46 LOAD_FAST                1 (other)
+             48 COMPARE_OP               7 (not in)
+             50 POP_JUMP_IF_FALSE       40
+
+437          52 LOAD_CONST               1 (False)
+             54 RETURN_VALUE
+             56 JUMP_ABSOLUTE           40
+        >>   58 POP_BLOCK
+
+438     >>   60 LOAD_CONST               2 (True)
+             62 RETURN_VALUE
+
+Disassembly of __lt__:
+441           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+442          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+443     >>   14 LOAD_GLOBAL              3 (len)
+             16 LOAD_FAST                0 (self)
+             18 CALL_FUNCTION            1
+             20 LOAD_GLOBAL              3 (len)
+             22 LOAD_FAST                1 (other)
+             24 CALL_FUNCTION            1
+             26 COMPARE_OP               0 (<)
+             28 JUMP_IF_FALSE_OR_POP    38
+             30 LOAD_FAST                0 (self)
+             32 LOAD_METHOD              4 (__le__)
+             34 LOAD_FAST                1 (other)
+             36 CALL_METHOD              1
+        >>   38 RETURN_VALUE
+
+Disassembly of __or__:
+489           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Iterable)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+490          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+491     >>   14 LOAD_CONST               1 (<code object <genexpr> at 0x000001B9598D7E40, file "C:\Program Files\Python37\lib\_collections_abc.py", line 491>)
+             16 LOAD_CONST               2 ('Set.__or__.<locals>.<genexpr>')
+             18 MAKE_FUNCTION            0
+             20 LOAD_FAST                0 (self)
+             22 LOAD_FAST                1 (other)
+             24 BUILD_TUPLE              2
+             26 GET_ITER
+             28 CALL_FUNCTION            1
+             30 STORE_FAST               2 (chain)
+
+492          32 LOAD_FAST                0 (self)
+             34 LOAD_METHOD              3 (_from_iterable)
+             36 LOAD_FAST                2 (chain)
+             38 CALL_METHOD              1
+             40 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B9598D7E40, file "C:\Program Files\Python37\lib\_collections_abc.py", line 491>:
+491           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                20 (to 24)
+              4 STORE_FAST               1 (s)
+              6 LOAD_FAST                1 (s)
+              8 GET_ITER
+        >>   10 FOR_ITER                10 (to 22)
+             12 STORE_FAST               2 (e)
+             14 LOAD_FAST                2 (e)
+             16 YIELD_VALUE
+             18 POP_TOP
+             20 JUMP_ABSOLUTE           10
+        >>   22 JUMP_ABSOLUTE            2
+        >>   24 LOAD_CONST               0 (None)
+             26 RETURN_VALUE
+
+Disassembly of __rand__:
+475           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Iterable)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+476          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+477     >>   14 LOAD_DEREF               0 (self)
+             16 LOAD_METHOD              3 (_from_iterable)
+             18 LOAD_CLOSURE             0 (self)
+             20 BUILD_TUPLE              1
+             22 LOAD_CONST               1 (<code object <genexpr> at 0x000001B9598D7C90, file "C:\Program Files\Python37\lib\_collections_abc.py", line 477>)
+             24 LOAD_CONST               2 ('Set.__and__.<locals>.<genexpr>')
+             26 MAKE_FUNCTION            8
+             28 LOAD_FAST                1 (other)
+             30 GET_ITER
+             32 CALL_FUNCTION            1
+             34 CALL_METHOD              1
+             36 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B9598D7C90, file "C:\Program Files\Python37\lib\_collections_abc.py", line 477>:
+477           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                18 (to 22)
+              4 STORE_FAST               1 (value)
+              6 LOAD_FAST                1 (value)
+              8 LOAD_DEREF               0 (self)
+             10 COMPARE_OP               6 (in)
+             12 POP_JUMP_IF_FALSE        2
+             14 LOAD_FAST                1 (value)
+             16 YIELD_VALUE
+             18 POP_TOP
+             20 JUMP_ABSOLUTE            2
+        >>   22 LOAD_CONST               0 (None)
+             24 RETURN_VALUE
+
+Disassembly of __ror__:
+489           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Iterable)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        14
+
+490          10 LOAD_GLOBAL              2 (NotImplemented)
+             12 RETURN_VALUE
+
+491     >>   14 LOAD_CONST               1 (<code object <genexpr> at 0x000001B9598D7E40, file "C:\Program Files\Python37\lib\_collections_abc.py", line 491>)
+             16 LOAD_CONST               2 ('Set.__or__.<locals>.<genexpr>')
+             18 MAKE_FUNCTION            0
+             20 LOAD_FAST                0 (self)
+             22 LOAD_FAST                1 (other)
+             24 BUILD_TUPLE              2
+             26 GET_ITER
+             28 CALL_FUNCTION            1
+             30 STORE_FAST               2 (chain)
+
+492          32 LOAD_FAST                0 (self)
+             34 LOAD_METHOD              3 (_from_iterable)
+             36 LOAD_FAST                2 (chain)
+             38 CALL_METHOD              1
+             40 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B9598D7E40, file "C:\Program Files\Python37\lib\_collections_abc.py", line 491>:
+491           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                20 (to 24)
+              4 STORE_FAST               1 (s)
+              6 LOAD_FAST                1 (s)
+              8 GET_ITER
+        >>   10 FOR_ITER                10 (to 22)
+             12 STORE_FAST               2 (e)
+             14 LOAD_FAST                2 (e)
+             16 YIELD_VALUE
+             18 POP_TOP
+             20 JUMP_ABSOLUTE           10
+        >>   22 JUMP_ABSOLUTE            2
+        >>   24 LOAD_CONST               0 (None)
+             26 RETURN_VALUE
+
+Disassembly of __rsub__:
+505           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        34
+
+506          10 LOAD_GLOBAL              0 (isinstance)
+             12 LOAD_FAST                1 (other)
+             14 LOAD_GLOBAL              2 (Iterable)
+             16 CALL_FUNCTION            2
+             18 POP_JUMP_IF_TRUE        24
+
+507          20 LOAD_GLOBAL              3 (NotImplemented)
+             22 RETURN_VALUE
+
+508     >>   24 LOAD_DEREF               0 (self)
+             26 LOAD_METHOD              4 (_from_iterable)
+             28 LOAD_FAST                1 (other)
+             30 CALL_METHOD              1
+             32 STORE_FAST               1 (other)
+
+509     >>   34 LOAD_DEREF               0 (self)
+             36 LOAD_METHOD              4 (_from_iterable)
+             38 LOAD_CLOSURE             0 (self)
+             40 BUILD_TUPLE              1
+             42 LOAD_CONST               1 (<code object <genexpr> at 0x000001B9598DC0C0, file "C:\Program Files\Python37\lib\_collections_abc.py", line 509>)
+             44 LOAD_CONST               2 ('Set.__rsub__.<locals>.<genexpr>')
+             46 MAKE_FUNCTION            8
+             48 LOAD_FAST                1 (other)
+             50 GET_ITER
+             52 CALL_FUNCTION            1
+             54 CALL_METHOD              1
+             56 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B9598DC0C0, file "C:\Program Files\Python37\lib\_collections_abc.py", line 509>:
+509           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                18 (to 22)
+              4 STORE_FAST               1 (value)
+
+510           6 LOAD_FAST                1 (value)
+              8 LOAD_DEREF               0 (self)
+             10 COMPARE_OP               7 (not in)
+             12 POP_JUMP_IF_FALSE        2
+             14 LOAD_FAST                1 (value)
+             16 YIELD_VALUE
+             18 POP_TOP
+             20 JUMP_ABSOLUTE            2
+        >>   22 LOAD_CONST               0 (None)
+             24 RETURN_VALUE
+
+Disassembly of __rxor__:
+513           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        34
+
+514          10 LOAD_GLOBAL              0 (isinstance)
+             12 LOAD_FAST                1 (other)
+             14 LOAD_GLOBAL              2 (Iterable)
+             16 CALL_FUNCTION            2
+             18 POP_JUMP_IF_TRUE        24
+
+515          20 LOAD_GLOBAL              3 (NotImplemented)
+             22 RETURN_VALUE
+
+516     >>   24 LOAD_FAST                0 (self)
+             26 LOAD_METHOD              4 (_from_iterable)
+             28 LOAD_FAST                1 (other)
+             30 CALL_METHOD              1
+             32 STORE_FAST               1 (other)
+
+517     >>   34 LOAD_FAST                0 (self)
+             36 LOAD_FAST                1 (other)
+             38 BINARY_SUBTRACT
+             40 LOAD_FAST                1 (other)
+             42 LOAD_FAST                0 (self)
+             44 BINARY_SUBTRACT
+             46 BINARY_OR
+             48 RETURN_VALUE
+
+Disassembly of __sub__:
+497           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_DEREF               0 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        34
+
+498          10 LOAD_GLOBAL              0 (isinstance)
+             12 LOAD_DEREF               0 (other)
+             14 LOAD_GLOBAL              2 (Iterable)
+             16 CALL_FUNCTION            2
+             18 POP_JUMP_IF_TRUE        24
+
+499          20 LOAD_GLOBAL              3 (NotImplemented)
+             22 RETURN_VALUE
+
+500     >>   24 LOAD_FAST                0 (self)
+             26 LOAD_METHOD              4 (_from_iterable)
+             28 LOAD_DEREF               0 (other)
+             30 CALL_METHOD              1
+             32 STORE_DEREF              0 (other)
+
+501     >>   34 LOAD_FAST                0 (self)
+             36 LOAD_METHOD              4 (_from_iterable)
+             38 LOAD_CLOSURE             0 (other)
+             40 BUILD_TUPLE              1
+             42 LOAD_CONST               1 (<code object <genexpr> at 0x000001B9598D7F60, file "C:\Program Files\Python37\lib\_collections_abc.py", line 501>)
+             44 LOAD_CONST               2 ('Set.__sub__.<locals>.<genexpr>')
+             46 MAKE_FUNCTION            8
+             48 LOAD_FAST                0 (self)
+             50 GET_ITER
+             52 CALL_FUNCTION            1
+             54 CALL_METHOD              1
+             56 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B9598D7F60, file "C:\Program Files\Python37\lib\_collections_abc.py", line 501>:
+501           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                18 (to 22)
+              4 STORE_FAST               1 (value)
+
+502           6 LOAD_FAST                1 (value)
+              8 LOAD_DEREF               0 (other)
+             10 COMPARE_OP               7 (not in)
+             12 POP_JUMP_IF_FALSE        2
+             14 LOAD_FAST                1 (value)
+             16 YIELD_VALUE
+             18 POP_TOP
+             20 JUMP_ABSOLUTE            2
+        >>   22 LOAD_CONST               0 (None)
+             24 RETURN_VALUE
+
+Disassembly of __xor__:
+513           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (other)
+              4 LOAD_GLOBAL              1 (Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_TRUE        34
+
+514          10 LOAD_GLOBAL              0 (isinstance)
+             12 LOAD_FAST                1 (other)
+             14 LOAD_GLOBAL              2 (Iterable)
+             16 CALL_FUNCTION            2
+             18 POP_JUMP_IF_TRUE        24
+
+515          20 LOAD_GLOBAL              3 (NotImplemented)
+             22 RETURN_VALUE
+
+516     >>   24 LOAD_FAST                0 (self)
+             26 LOAD_METHOD              4 (_from_iterable)
+             28 LOAD_FAST                1 (other)
+             30 CALL_METHOD              1
+             32 STORE_FAST               1 (other)
+
+517     >>   34 LOAD_FAST                0 (self)
+             36 LOAD_FAST                1 (other)
+             38 BINARY_SUBTRACT
+             40 LOAD_FAST                1 (other)
+             42 LOAD_FAST                0 (self)
+             44 BINARY_SUBTRACT
+             46 BINARY_OR
+             48 RETURN_VALUE
+
+Disassembly of _from_iterable:
+472           0 LOAD_FAST                0 (cls)
+              2 LOAD_FAST                1 (it)
+              4 CALL_FUNCTION            1
+              6 RETURN_VALUE
+
+Disassembly of _hash:
+536           0 LOAD_GLOBAL              0 (sys)
+              2 LOAD_ATTR                1 (maxsize)
+              4 STORE_FAST               1 (MAX)
+
+537           6 LOAD_CONST               1 (2)
+              8 LOAD_FAST                1 (MAX)
+             10 BINARY_MULTIPLY
+             12 LOAD_CONST               2 (1)
+             14 BINARY_ADD
+             16 STORE_FAST               2 (MASK)
+
+538          18 LOAD_GLOBAL              2 (len)
+             20 LOAD_FAST                0 (self)
+             22 CALL_FUNCTION            1
+             24 STORE_FAST               3 (n)
+
+539          26 LOAD_CONST               3 (1927868237)
+             28 LOAD_FAST                3 (n)
+             30 LOAD_CONST               2 (1)
+             32 BINARY_ADD
+             34 BINARY_MULTIPLY
+             36 STORE_FAST               4 (h)
+
+540          38 LOAD_FAST                4 (h)
+             40 LOAD_FAST                2 (MASK)
+             42 INPLACE_AND
+             44 STORE_FAST               4 (h)
+
+541          46 SETUP_LOOP              52 (to 100)
+             48 LOAD_FAST                0 (self)
+             50 GET_ITER
+        >>   52 FOR_ITER                44 (to 98)
+             54 STORE_FAST               5 (x)
+
+542          56 LOAD_GLOBAL              3 (hash)
+             58 LOAD_FAST                5 (x)
+             60 CALL_FUNCTION            1
+             62 STORE_FAST               6 (hx)
+
+543          64 LOAD_FAST                4 (h)
+             66 LOAD_FAST                6 (hx)
+             68 LOAD_FAST                6 (hx)
+             70 LOAD_CONST               4 (16)
+             72 BINARY_LSHIFT
+             74 BINARY_XOR
+             76 LOAD_CONST               5 (89869747)
+             78 BINARY_XOR
+             80 LOAD_CONST               6 (3644798167)
+             82 BINARY_MULTIPLY
+             84 INPLACE_XOR
+             86 STORE_FAST               4 (h)
+
+544          88 LOAD_FAST                4 (h)
+             90 LOAD_FAST                2 (MASK)
+             92 INPLACE_AND
+             94 STORE_FAST               4 (h)
+             96 JUMP_ABSOLUTE           52
+        >>   98 POP_BLOCK
+
+545     >>  100 LOAD_FAST                4 (h)
+            102 LOAD_CONST               7 (69069)
+            104 BINARY_MULTIPLY
+            106 LOAD_CONST               8 (907133923)
+            108 BINARY_ADD
+            110 STORE_FAST               4 (h)
+
+546         112 LOAD_FAST                4 (h)
+            114 LOAD_FAST                2 (MASK)
+            116 INPLACE_AND
+            118 STORE_FAST               4 (h)
+
+547         120 LOAD_FAST                4 (h)
+            122 LOAD_FAST                1 (MAX)
+            124 COMPARE_OP               4 (>)
+            126 POP_JUMP_IF_FALSE      140
+
+548         128 LOAD_FAST                4 (h)
+            130 LOAD_FAST                2 (MASK)
+            132 LOAD_CONST               2 (1)
+            134 BINARY_ADD
+            136 INPLACE_SUBTRACT
+            138 STORE_FAST               4 (h)
+
+549     >>  140 LOAD_FAST                4 (h)
+            142 LOAD_CONST               9 (-1)
+            144 COMPARE_OP               2 (==)
+            146 POP_JUMP_IF_FALSE      152
+
+550         148 LOAD_CONST              10 (590923713)
+            150 STORE_FAST               4 (h)
+
+551     >>  152 LOAD_FAST                4 (h)
+            154 RETURN_VALUE
+
+Disassembly of isdisjoint:
+483           0 SETUP_LOOP              24 (to 26)
+              2 LOAD_FAST                1 (other)
+              4 GET_ITER
+        >>    6 FOR_ITER                16 (to 24)
+              8 STORE_FAST               2 (value)
+
+484          10 LOAD_FAST                2 (value)
+             12 LOAD_FAST                0 (self)
+             14 COMPARE_OP               6 (in)
+             16 POP_JUMP_IF_FALSE        6
+
+485          18 LOAD_CONST               1 (False)
+             20 RETURN_VALUE
+             22 JUMP_ABSOLUTE            6
+        >>   24 POP_BLOCK
+
+486     >>   26 LOAD_CONST               2 (True)
+             28 RETURN_VALUE
+
+
+Disassembly of _test:
+725           0 LOAD_GLOBAL              0 (_test_generator)
+              2 LOAD_FAST                0 (N)
+              4 LOAD_GLOBAL              1 (random)
+              6 LOAD_CONST               1 (())
+              8 CALL_FUNCTION            3
+             10 POP_TOP
+
+726          12 LOAD_GLOBAL              0 (_test_generator)
+             14 LOAD_FAST                0 (N)
+             16 LOAD_GLOBAL              2 (normalvariate)
+             18 LOAD_CONST               2 ((0.0, 1.0))
+             20 CALL_FUNCTION            3
+             22 POP_TOP
+
+727          24 LOAD_GLOBAL              0 (_test_generator)
+             26 LOAD_FAST                0 (N)
+             28 LOAD_GLOBAL              3 (lognormvariate)
+             30 LOAD_CONST               2 ((0.0, 1.0))
+             32 CALL_FUNCTION            3
+             34 POP_TOP
+
+728          36 LOAD_GLOBAL              0 (_test_generator)
+             38 LOAD_FAST                0 (N)
+             40 LOAD_GLOBAL              4 (vonmisesvariate)
+             42 LOAD_CONST               2 ((0.0, 1.0))
+             44 CALL_FUNCTION            3
+             46 POP_TOP
+
+729          48 LOAD_GLOBAL              0 (_test_generator)
+             50 LOAD_FAST                0 (N)
+             52 LOAD_GLOBAL              5 (gammavariate)
+             54 LOAD_CONST               3 ((0.01, 1.0))
+             56 CALL_FUNCTION            3
+             58 POP_TOP
+
+730          60 LOAD_GLOBAL              0 (_test_generator)
+             62 LOAD_FAST                0 (N)
+             64 LOAD_GLOBAL              5 (gammavariate)
+             66 LOAD_CONST               4 ((0.1, 1.0))
+             68 CALL_FUNCTION            3
+             70 POP_TOP
+
+731          72 LOAD_GLOBAL              0 (_test_generator)
+             74 LOAD_FAST                0 (N)
+             76 LOAD_GLOBAL              5 (gammavariate)
+             78 LOAD_CONST               5 ((0.1, 2.0))
+             80 CALL_FUNCTION            3
+             82 POP_TOP
+
+732          84 LOAD_GLOBAL              0 (_test_generator)
+             86 LOAD_FAST                0 (N)
+             88 LOAD_GLOBAL              5 (gammavariate)
+             90 LOAD_CONST               6 ((0.5, 1.0))
+             92 CALL_FUNCTION            3
+             94 POP_TOP
+
+733          96 LOAD_GLOBAL              0 (_test_generator)
+             98 LOAD_FAST                0 (N)
+            100 LOAD_GLOBAL              5 (gammavariate)
+            102 LOAD_CONST               7 ((0.9, 1.0))
+            104 CALL_FUNCTION            3
+            106 POP_TOP
+
+734         108 LOAD_GLOBAL              0 (_test_generator)
+            110 LOAD_FAST                0 (N)
+            112 LOAD_GLOBAL              5 (gammavariate)
+            114 LOAD_CONST               8 ((1.0, 1.0))
+            116 CALL_FUNCTION            3
+            118 POP_TOP
+
+735         120 LOAD_GLOBAL              0 (_test_generator)
+            122 LOAD_FAST                0 (N)
+            124 LOAD_GLOBAL              5 (gammavariate)
+            126 LOAD_CONST               9 ((2.0, 1.0))
+            128 CALL_FUNCTION            3
+            130 POP_TOP
+
+736         132 LOAD_GLOBAL              0 (_test_generator)
+            134 LOAD_FAST                0 (N)
+            136 LOAD_GLOBAL              5 (gammavariate)
+            138 LOAD_CONST              10 ((20.0, 1.0))
+            140 CALL_FUNCTION            3
+            142 POP_TOP
+
+737         144 LOAD_GLOBAL              0 (_test_generator)
+            146 LOAD_FAST                0 (N)
+            148 LOAD_GLOBAL              5 (gammavariate)
+            150 LOAD_CONST              11 ((200.0, 1.0))
+            152 CALL_FUNCTION            3
+            154 POP_TOP
+
+738         156 LOAD_GLOBAL              0 (_test_generator)
+            158 LOAD_FAST                0 (N)
+            160 LOAD_GLOBAL              6 (gauss)
+            162 LOAD_CONST               2 ((0.0, 1.0))
+            164 CALL_FUNCTION            3
+            166 POP_TOP
+
+739         168 LOAD_GLOBAL              0 (_test_generator)
+            170 LOAD_FAST                0 (N)
+            172 LOAD_GLOBAL              7 (betavariate)
+            174 LOAD_CONST              12 ((3.0, 3.0))
+            176 CALL_FUNCTION            3
+            178 POP_TOP
+
+740         180 LOAD_GLOBAL              0 (_test_generator)
+            182 LOAD_FAST                0 (N)
+            184 LOAD_GLOBAL              8 (triangular)
+            186 LOAD_CONST              13 ((0.0, 1.0, 0.3333333333333333))
+            188 CALL_FUNCTION            3
+            190 POP_TOP
+            192 LOAD_CONST               0 (None)
+            194 RETURN_VALUE
+
+Disassembly of _test_generator:
+703           0 LOAD_CONST               1 (0)
+              2 LOAD_CONST               0 (None)
+              4 IMPORT_NAME              0 (time)
+              6 STORE_FAST               3 (time)
+
+704           8 LOAD_GLOBAL              1 (print)
+             10 LOAD_FAST                0 (n)
+             12 LOAD_CONST               2 ('times')
+             14 LOAD_FAST                1 (func)
+             16 LOAD_ATTR                2 (__name__)
+             18 CALL_FUNCTION            3
+             20 POP_TOP
+
+705          22 LOAD_CONST               3 (0.0)
+             24 STORE_FAST               4 (total)
+
+706          26 LOAD_CONST               3 (0.0)
+             28 STORE_FAST               5 (sqsum)
+
+707          30 LOAD_CONST               4 (10000000000.0)
+             32 STORE_FAST               6 (smallest)
+
+708          34 LOAD_CONST               5 (-10000000000.0)
+             36 STORE_FAST               7 (largest)
+
+709          38 LOAD_FAST                3 (time)
+             40 LOAD_METHOD              0 (time)
+             42 CALL_METHOD              0
+             44 STORE_FAST               8 (t0)
+
+710          46 SETUP_LOOP              64 (to 112)
+             48 LOAD_GLOBAL              3 (range)
+             50 LOAD_FAST                0 (n)
+             52 CALL_FUNCTION            1
+             54 GET_ITER
+        >>   56 FOR_ITER                52 (to 110)
+             58 STORE_FAST               9 (i)
+
+711          60 LOAD_FAST                1 (func)
+             62 LOAD_FAST                2 (args)
+             64 CALL_FUNCTION_EX         0
+             66 STORE_FAST              10 (x)
+
+712          68 LOAD_FAST                4 (total)
+             70 LOAD_FAST               10 (x)
+             72 INPLACE_ADD
+             74 STORE_FAST               4 (total)
+
+713          76 LOAD_FAST                5 (sqsum)
+             78 LOAD_FAST               10 (x)
+             80 LOAD_FAST               10 (x)
+             82 BINARY_MULTIPLY
+             84 BINARY_ADD
+             86 STORE_FAST               5 (sqsum)
+
+714          88 LOAD_GLOBAL              4 (min)
+             90 LOAD_FAST               10 (x)
+             92 LOAD_FAST                6 (smallest)
+             94 CALL_FUNCTION            2
+             96 STORE_FAST               6 (smallest)
+
+715          98 LOAD_GLOBAL              5 (max)
+            100 LOAD_FAST               10 (x)
+            102 LOAD_FAST                7 (largest)
+            104 CALL_FUNCTION            2
+            106 STORE_FAST               7 (largest)
+            108 JUMP_ABSOLUTE           56
+        >>  110 POP_BLOCK
+
+716     >>  112 LOAD_FAST                3 (time)
+            114 LOAD_METHOD              0 (time)
+            116 CALL_METHOD              0
+            118 STORE_FAST              11 (t1)
+
+717         120 LOAD_GLOBAL              1 (print)
+            122 LOAD_GLOBAL              6 (round)
+            124 LOAD_FAST               11 (t1)
+            126 LOAD_FAST                8 (t0)
+            128 BINARY_SUBTRACT
+            130 LOAD_CONST               6 (3)
+            132 CALL_FUNCTION            2
+            134 LOAD_CONST               7 ('sec,')
+            136 LOAD_CONST               8 (' ')
+            138 LOAD_CONST               9 (('end',))
+            140 CALL_FUNCTION_KW         3
+            142 POP_TOP
+
+718         144 LOAD_FAST                4 (total)
+            146 LOAD_FAST                0 (n)
+            148 BINARY_TRUE_DIVIDE
+            150 STORE_FAST              12 (avg)
+
+719         152 LOAD_GLOBAL              7 (_sqrt)
+            154 LOAD_FAST                5 (sqsum)
+            156 LOAD_FAST                0 (n)
+            158 BINARY_TRUE_DIVIDE
+            160 LOAD_FAST               12 (avg)
+            162 LOAD_FAST               12 (avg)
+            164 BINARY_MULTIPLY
+            166 BINARY_SUBTRACT
+            168 CALL_FUNCTION            1
+            170 STORE_FAST              13 (stddev)
+
+720         172 LOAD_GLOBAL              1 (print)
+            174 LOAD_CONST              10 ('avg %g, stddev %g, min %g, max %g\n')
+
+721         176 LOAD_FAST               12 (avg)
+            178 LOAD_FAST               13 (stddev)
+            180 LOAD_FAST                6 (smallest)
+            182 LOAD_FAST                7 (largest)
+            184 BUILD_TUPLE              4
+            186 BINARY_MODULO
+            188 CALL_FUNCTION            1
+            190 POP_TOP
+            192 LOAD_CONST               0 (None)
+            194 RETURN_VALUE
+
+Disassembly of betavariate:
+639           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (gammavariate)
+              4 LOAD_FAST                1 (alpha)
+              6 LOAD_CONST               1 (1.0)
+              8 CALL_METHOD              2
+             10 STORE_FAST               3 (y)
+
+640          12 LOAD_FAST                3 (y)
+             14 LOAD_CONST               2 (0)
+             16 COMPARE_OP               2 (==)
+             18 POP_JUMP_IF_FALSE       24
+
+641          20 LOAD_CONST               3 (0.0)
+             22 RETURN_VALUE
+
+643     >>   24 LOAD_FAST                3 (y)
+             26 LOAD_FAST                3 (y)
+             28 LOAD_FAST                0 (self)
+             30 LOAD_METHOD              0 (gammavariate)
+             32 LOAD_FAST                2 (beta)
+             34 LOAD_CONST               1 (1.0)
+             36 CALL_METHOD              2
+             38 BINARY_ADD
+             40 BINARY_TRUE_DIVIDE
+             42 RETURN_VALUE
+             44 LOAD_CONST               4 (None)
+             46 RETURN_VALUE
+
+Disassembly of choice:
+258           0 SETUP_EXCEPT            18 (to 20)
+
+259           2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              0 (_randbelow)
+              6 LOAD_GLOBAL              1 (len)
+              8 LOAD_FAST                1 (seq)
+             10 CALL_FUNCTION            1
+             12 CALL_METHOD              1
+             14 STORE_FAST               2 (i)
+             16 POP_BLOCK
+             18 JUMP_FORWARD            30 (to 50)
+
+260     >>   20 DUP_TOP
+             22 LOAD_GLOBAL              2 (ValueError)
+             24 COMPARE_OP              10 (exception match)
+             26 POP_JUMP_IF_FALSE       48
+             28 POP_TOP
+             30 POP_TOP
+             32 POP_TOP
+
+261          34 LOAD_GLOBAL              3 (IndexError)
+             36 LOAD_CONST               1 ('Cannot choose from an empty sequence')
+             38 CALL_FUNCTION            1
+             40 LOAD_CONST               2 (None)
+             42 RAISE_VARARGS            2
+             44 POP_EXCEPT
+             46 JUMP_FORWARD             2 (to 50)
+        >>   48 END_FINALLY
+
+262     >>   50 LOAD_FAST                1 (seq)
+             52 LOAD_FAST                2 (i)
+             54 BINARY_SUBSCR
+             56 RETURN_VALUE
+
+Disassembly of choices:
+351           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_DEREF              5 (random)
+
+352           6 LOAD_DEREF               2 (cum_weights)
+              8 LOAD_CONST               1 (None)
+             10 COMPARE_OP               8 (is)
+             12 POP_JUMP_IF_FALSE       78
+
+353          14 LOAD_FAST                2 (weights)
+             16 LOAD_CONST               1 (None)
+             18 COMPARE_OP               8 (is)
+             20 POP_JUMP_IF_FALSE       62
+
+354          22 LOAD_GLOBAL              1 (int)
+             24 STORE_DEREF              0 (_int)
+
+355          26 LOAD_GLOBAL              2 (len)
+             28 LOAD_DEREF               4 (population)
+             30 CALL_FUNCTION            1
+             32 STORE_DEREF              6 (total)
+
+356          34 LOAD_CLOSURE             0 (_int)
+             36 LOAD_CLOSURE             4 (population)
+             38 LOAD_CLOSURE             5 (random)
+             40 LOAD_CLOSURE             6 (total)
+             42 BUILD_TUPLE              4
+             44 LOAD_CONST               2 (<code object <listcomp> at 0x000001B959A54D20, file "C:\Program Files\Python37\lib\random.py", line 356>)
+             46 LOAD_CONST               3 ('Random.choices.<locals>.<listcomp>')
+             48 MAKE_FUNCTION            8
+             50 LOAD_GLOBAL              3 (range)
+             52 LOAD_FAST                4 (k)
+             54 CALL_FUNCTION            1
+             56 GET_ITER
+             58 CALL_FUNCTION            1
+             60 RETURN_VALUE
+
+357     >>   62 LOAD_GLOBAL              4 (list)
+             64 LOAD_GLOBAL              5 (_itertools)
+             66 LOAD_METHOD              6 (accumulate)
+             68 LOAD_FAST                2 (weights)
+             70 CALL_METHOD              1
+             72 CALL_FUNCTION            1
+             74 STORE_DEREF              2 (cum_weights)
+             76 JUMP_FORWARD            16 (to 94)
+
+358     >>   78 LOAD_FAST                2 (weights)
+             80 LOAD_CONST               1 (None)
+             82 COMPARE_OP               9 (is not)
+             84 POP_JUMP_IF_FALSE       94
+
+359          86 LOAD_GLOBAL              7 (TypeError)
+             88 LOAD_CONST               4 ('Cannot specify both weights and cumulative weights')
+             90 CALL_FUNCTION            1
+             92 RAISE_VARARGS            1
+
+360     >>   94 LOAD_GLOBAL              2 (len)
+             96 LOAD_DEREF               2 (cum_weights)
+             98 CALL_FUNCTION            1
+            100 LOAD_GLOBAL              2 (len)
+            102 LOAD_DEREF               4 (population)
+            104 CALL_FUNCTION            1
+            106 COMPARE_OP               3 (!=)
+            108 POP_JUMP_IF_FALSE      118
+
+361         110 LOAD_GLOBAL              8 (ValueError)
+            112 LOAD_CONST               5 ('The number of weights does not match the population')
+            114 CALL_FUNCTION            1
+            116 RAISE_VARARGS            1
+
+362     >>  118 LOAD_GLOBAL              9 (_bisect)
+            120 LOAD_ATTR               10 (bisect)
+            122 STORE_DEREF              1 (bisect)
+
+363         124 LOAD_DEREF               2 (cum_weights)
+            126 LOAD_CONST               6 (-1)
+            128 BINARY_SUBSCR
+            130 STORE_DEREF              6 (total)
+
+364         132 LOAD_GLOBAL              2 (len)
+            134 LOAD_DEREF               2 (cum_weights)
+            136 CALL_FUNCTION            1
+            138 LOAD_CONST               7 (1)
+            140 BINARY_SUBTRACT
+            142 STORE_DEREF              3 (hi)
+
+365         144 LOAD_CLOSURE             1 (bisect)
+            146 LOAD_CLOSURE             2 (cum_weights)
+            148 LOAD_CLOSURE             3 (hi)
+            150 LOAD_CLOSURE             4 (population)
+            152 LOAD_CLOSURE             5 (random)
+            154 LOAD_CLOSURE             6 (total)
+            156 BUILD_TUPLE              6
+            158 LOAD_CONST               8 (<code object <listcomp> at 0x000001B959A54C90, file "C:\Program Files\Python37\lib\random.py", line 365>)
+            160 LOAD_CONST               3 ('Random.choices.<locals>.<listcomp>')
+            162 MAKE_FUNCTION            8
+
+366         164 LOAD_GLOBAL              3 (range)
+            166 LOAD_FAST                4 (k)
+            168 CALL_FUNCTION            1
+            170 GET_ITER
+            172 CALL_FUNCTION            1
+            174 RETURN_VALUE
+
+Disassembly of <code object <listcomp> at 0x000001B959A54D20, file "C:\Program Files\Python37\lib\random.py", line 356>:
+356           0 BUILD_LIST               0
+              2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                22 (to 28)
+              6 STORE_FAST               1 (i)
+              8 LOAD_DEREF               1 (population)
+             10 LOAD_DEREF               0 (_int)
+             12 LOAD_DEREF               2 (random)
+             14 CALL_FUNCTION            0
+             16 LOAD_DEREF               3 (total)
+             18 BINARY_MULTIPLY
+             20 CALL_FUNCTION            1
+             22 BINARY_SUBSCR
+             24 LIST_APPEND              2
+             26 JUMP_ABSOLUTE            4
+        >>   28 RETURN_VALUE
+
+Disassembly of <code object <listcomp> at 0x000001B959A54C90, file "C:\Program Files\Python37\lib\random.py", line 365>:
+365           0 BUILD_LIST               0
+              2 LOAD_FAST                0 (.0)
+        >>    4 FOR_ITER                28 (to 34)
+
+366           6 STORE_FAST               1 (i)
+              8 LOAD_DEREF               3 (population)
+             10 LOAD_DEREF               0 (bisect)
+             12 LOAD_DEREF               1 (cum_weights)
+             14 LOAD_DEREF               4 (random)
+             16 CALL_FUNCTION            0
+             18 LOAD_DEREF               5 (total)
+             20 BINARY_MULTIPLY
+             22 LOAD_CONST               0 (0)
+             24 LOAD_DEREF               2 (hi)
+             26 CALL_FUNCTION            4
+             28 BINARY_SUBSCR
+             30 LIST_APPEND              2
+             32 JUMP_ABSOLUTE            4
+        >>   34 RETURN_VALUE
+
+Disassembly of expovariate:
+452           0 LOAD_GLOBAL              0 (_log)
+              2 LOAD_CONST               1 (1.0)
+              4 LOAD_FAST                0 (self)
+              6 LOAD_METHOD              1 (random)
+              8 CALL_METHOD              0
+             10 BINARY_SUBTRACT
+             12 CALL_FUNCTION            1
+             14 UNARY_NEGATIVE
+             16 LOAD_FAST                1 (lambd)
+             18 BINARY_TRUE_DIVIDE
+             20 RETURN_VALUE
+
+Disassembly of gammavariate:
+521           0 LOAD_FAST                1 (alpha)
+              2 LOAD_CONST               1 (0.0)
+              4 COMPARE_OP               1 (<=)
+              6 POP_JUMP_IF_TRUE        16
+              8 LOAD_FAST                2 (beta)
+             10 LOAD_CONST               1 (0.0)
+             12 COMPARE_OP               1 (<=)
+             14 POP_JUMP_IF_FALSE       24
+
+522     >>   16 LOAD_GLOBAL              0 (ValueError)
+             18 LOAD_CONST               2 ('gammavariate: alpha and beta must be > 0.0')
+             20 CALL_FUNCTION            1
+             22 RAISE_VARARGS            1
+
+524     >>   24 LOAD_FAST                0 (self)
+             26 LOAD_ATTR                1 (random)
+             28 STORE_FAST               3 (random)
+
+525          30 LOAD_FAST                1 (alpha)
+             32 LOAD_CONST               3 (1.0)
+             34 COMPARE_OP               4 (>)
+             36 POP_JUMP_IF_FALSE      218
+
+531          38 LOAD_GLOBAL              2 (_sqrt)
+             40 LOAD_CONST               4 (2.0)
+             42 LOAD_FAST                1 (alpha)
+             44 BINARY_MULTIPLY
+             46 LOAD_CONST               3 (1.0)
+             48 BINARY_SUBTRACT
+             50 CALL_FUNCTION            1
+             52 STORE_FAST               4 (ainv)
+
+532          54 LOAD_FAST                1 (alpha)
+             56 LOAD_GLOBAL              3 (LOG4)
+             58 BINARY_SUBTRACT
+             60 STORE_FAST               5 (bbb)
+
+533          62 LOAD_FAST                1 (alpha)
+             64 LOAD_FAST                4 (ainv)
+             66 BINARY_ADD
+             68 STORE_FAST               6 (ccc)
+
+535          70 SETUP_LOOP             144 (to 216)
+
+536     >>   72 LOAD_FAST                3 (random)
+             74 CALL_FUNCTION            0
+             76 STORE_FAST               7 (u1)
+
+537          78 LOAD_CONST               5 (1e-07)
+             80 LOAD_FAST                7 (u1)
+             82 DUP_TOP
+             84 ROT_THREE
+             86 COMPARE_OP               0 (<)
+             88 POP_JUMP_IF_FALSE       98
+             90 LOAD_CONST               6 (0.9999999)
+             92 COMPARE_OP               0 (<)
+             94 POP_JUMP_IF_TRUE       102
+             96 JUMP_ABSOLUTE           72
+        >>   98 POP_TOP
+
+538         100 JUMP_ABSOLUTE           72
+
+539     >>  102 LOAD_CONST               3 (1.0)
+            104 LOAD_FAST                3 (random)
+            106 CALL_FUNCTION            0
+            108 BINARY_SUBTRACT
+            110 STORE_FAST               8 (u2)
+
+540         112 LOAD_GLOBAL              4 (_log)
+            114 LOAD_FAST                7 (u1)
+            116 LOAD_CONST               3 (1.0)
+            118 LOAD_FAST                7 (u1)
+            120 BINARY_SUBTRACT
+            122 BINARY_TRUE_DIVIDE
+            124 CALL_FUNCTION            1
+            126 LOAD_FAST                4 (ainv)
+            128 BINARY_TRUE_DIVIDE
+            130 STORE_FAST               9 (v)
+
+541         132 LOAD_FAST                1 (alpha)
+            134 LOAD_GLOBAL              5 (_exp)
+            136 LOAD_FAST                9 (v)
+            138 CALL_FUNCTION            1
+            140 BINARY_MULTIPLY
+            142 STORE_FAST              10 (x)
+
+542         144 LOAD_FAST                7 (u1)
+            146 LOAD_FAST                7 (u1)
+            148 BINARY_MULTIPLY
+            150 LOAD_FAST                8 (u2)
+            152 BINARY_MULTIPLY
+            154 STORE_FAST              11 (z)
+
+543         156 LOAD_FAST                5 (bbb)
+            158 LOAD_FAST                6 (ccc)
+            160 LOAD_FAST                9 (v)
+            162 BINARY_MULTIPLY
+            164 BINARY_ADD
+            166 LOAD_FAST               10 (x)
+            168 BINARY_SUBTRACT
+            170 STORE_FAST              12 (r)
+
+544         172 LOAD_FAST               12 (r)
+            174 LOAD_GLOBAL              6 (SG_MAGICCONST)
+            176 BINARY_ADD
+            178 LOAD_CONST               7 (4.5)
+            180 LOAD_FAST               11 (z)
+            182 BINARY_MULTIPLY
+            184 BINARY_SUBTRACT
+            186 LOAD_CONST               1 (0.0)
+            188 COMPARE_OP               5 (>=)
+            190 POP_JUMP_IF_TRUE       204
+            192 LOAD_FAST               12 (r)
+            194 LOAD_GLOBAL              4 (_log)
+            196 LOAD_FAST               11 (z)
+            198 CALL_FUNCTION            1
+            200 COMPARE_OP               5 (>=)
+            202 POP_JUMP_IF_FALSE       72
+
+545     >>  204 LOAD_FAST               10 (x)
+            206 LOAD_FAST                2 (beta)
+            208 BINARY_MULTIPLY
+            210 RETURN_VALUE
+            212 JUMP_ABSOLUTE           72
+            214 POP_BLOCK
+        >>  216 JUMP_FORWARD           190 (to 408)
+
+547     >>  218 LOAD_FAST                1 (alpha)
+            220 LOAD_CONST               3 (1.0)
+            222 COMPARE_OP               2 (==)
+            224 EXTENDED_ARG             1
+            226 POP_JUMP_IF_FALSE      268
+
+549         228 LOAD_FAST                3 (random)
+            230 CALL_FUNCTION            0
+            232 STORE_FAST              13 (u)
+
+550         234 SETUP_LOOP              18 (to 254)
+        >>  236 LOAD_FAST               13 (u)
+            238 LOAD_CONST               5 (1e-07)
+            240 COMPARE_OP               1 (<=)
+            242 POP_JUMP_IF_FALSE      252
+
+551         244 LOAD_FAST                3 (random)
+            246 CALL_FUNCTION            0
+            248 STORE_FAST              13 (u)
+            250 JUMP_ABSOLUTE          236
+        >>  252 POP_BLOCK
+
+552     >>  254 LOAD_GLOBAL              4 (_log)
+            256 LOAD_FAST               13 (u)
+            258 CALL_FUNCTION            1
+            260 UNARY_NEGATIVE
+            262 LOAD_FAST                2 (beta)
+            264 BINARY_MULTIPLY
+            266 RETURN_VALUE
+
+558     >>  268 SETUP_LOOP             130 (to 400)
+
+559     >>  270 LOAD_FAST                3 (random)
+            272 CALL_FUNCTION            0
+            274 STORE_FAST              13 (u)
+
+560         276 LOAD_GLOBAL              7 (_e)
+            278 LOAD_FAST                1 (alpha)
+            280 BINARY_ADD
+            282 LOAD_GLOBAL              7 (_e)
+            284 BINARY_TRUE_DIVIDE
+            286 STORE_FAST              14 (b)
+
+561         288 LOAD_FAST               14 (b)
+            290 LOAD_FAST               13 (u)
+            292 BINARY_MULTIPLY
+            294 STORE_FAST              15 (p)
+
+562         296 LOAD_FAST               15 (p)
+            298 LOAD_CONST               3 (1.0)
+            300 COMPARE_OP               1 (<=)
+            302 EXTENDED_ARG             1
+            304 POP_JUMP_IF_FALSE      320
+
+563         306 LOAD_FAST               15 (p)
+            308 LOAD_CONST               3 (1.0)
+            310 LOAD_FAST                1 (alpha)
+            312 BINARY_TRUE_DIVIDE
+            314 BINARY_POWER
+            316 STORE_FAST              10 (x)
+            318 JUMP_FORWARD            18 (to 338)
+
+565     >>  320 LOAD_GLOBAL              4 (_log)
+            322 LOAD_FAST               14 (b)
+            324 LOAD_FAST               15 (p)
+            326 BINARY_SUBTRACT
+            328 LOAD_FAST                1 (alpha)
+            330 BINARY_TRUE_DIVIDE
+            332 CALL_FUNCTION            1
+            334 UNARY_NEGATIVE
+            336 STORE_FAST              10 (x)
+
+566     >>  338 LOAD_FAST                3 (random)
+            340 CALL_FUNCTION            0
+            342 STORE_FAST               7 (u1)
+
+567         344 LOAD_FAST               15 (p)
+            346 LOAD_CONST               3 (1.0)
+            348 COMPARE_OP               4 (>)
+            350 EXTENDED_ARG             1
+            352 POP_JUMP_IF_FALSE      376
+
+568         354 LOAD_FAST                7 (u1)
+            356 LOAD_FAST               10 (x)
+            358 LOAD_FAST                1 (alpha)
+            360 LOAD_CONST               3 (1.0)
+            362 BINARY_SUBTRACT
+            364 BINARY_POWER
+            366 COMPARE_OP               1 (<=)
+            368 EXTENDED_ARG             1
+            370 POP_JUMP_IF_FALSE      394
+
+569         372 BREAK_LOOP
+            374 JUMP_FORWARD            18 (to 394)
+
+570     >>  376 LOAD_FAST                7 (u1)
+            378 LOAD_GLOBAL              5 (_exp)
+            380 LOAD_FAST               10 (x)
+            382 UNARY_NEGATIVE
+            384 CALL_FUNCTION            1
+            386 COMPARE_OP               1 (<=)
+            388 EXTENDED_ARG             1
+            390 POP_JUMP_IF_FALSE      270
+
+571         392 BREAK_LOOP
+        >>  394 EXTENDED_ARG             1
+            396 JUMP_ABSOLUTE          270
+            398 POP_BLOCK
+
+572     >>  400 LOAD_FAST               10 (x)
+            402 LOAD_FAST                2 (beta)
+            404 BINARY_MULTIPLY
+            406 RETURN_VALUE
+        >>  408 LOAD_CONST               8 (None)
+            410 RETURN_VALUE
+
+Disassembly of gauss:
+604           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_FAST               3 (random)
+
+605           6 LOAD_FAST                0 (self)
+              8 LOAD_ATTR                1 (gauss_next)
+             10 STORE_FAST               4 (z)
+
+606          12 LOAD_CONST               1 (None)
+             14 LOAD_FAST                0 (self)
+             16 STORE_ATTR               1 (gauss_next)
+
+607          18 LOAD_FAST                4 (z)
+             20 LOAD_CONST               1 (None)
+             22 COMPARE_OP               8 (is)
+             24 POP_JUMP_IF_FALSE       84
+
+608          26 LOAD_FAST                3 (random)
+             28 CALL_FUNCTION            0
+             30 LOAD_GLOBAL              2 (TWOPI)
+             32 BINARY_MULTIPLY
+             34 STORE_FAST               5 (x2pi)
+
+609          36 LOAD_GLOBAL              3 (_sqrt)
+             38 LOAD_CONST               2 (-2.0)
+             40 LOAD_GLOBAL              4 (_log)
+             42 LOAD_CONST               3 (1.0)
+             44 LOAD_FAST                3 (random)
+             46 CALL_FUNCTION            0
+             48 BINARY_SUBTRACT
+             50 CALL_FUNCTION            1
+             52 BINARY_MULTIPLY
+             54 CALL_FUNCTION            1
+             56 STORE_FAST               6 (g2rad)
+
+610          58 LOAD_GLOBAL              5 (_cos)
+             60 LOAD_FAST                5 (x2pi)
+             62 CALL_FUNCTION            1
+             64 LOAD_FAST                6 (g2rad)
+             66 BINARY_MULTIPLY
+             68 STORE_FAST               4 (z)
+
+611          70 LOAD_GLOBAL              6 (_sin)
+             72 LOAD_FAST                5 (x2pi)
+             74 CALL_FUNCTION            1
+             76 LOAD_FAST                6 (g2rad)
+             78 BINARY_MULTIPLY
+             80 LOAD_FAST                0 (self)
+             82 STORE_ATTR               1 (gauss_next)
+
+613     >>   84 LOAD_FAST                1 (mu)
+             86 LOAD_FAST                4 (z)
+             88 LOAD_FAST                2 (sigma)
+             90 BINARY_MULTIPLY
+             92 BINARY_ADD
+             94 RETURN_VALUE
+
+Disassembly of getstate:
+131           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (VERSION)
+              4 LOAD_GLOBAL              1 (super)
+              6 CALL_FUNCTION            0
+              8 LOAD_METHOD              2 (getstate)
+             10 CALL_METHOD              0
+             12 LOAD_FAST                0 (self)
+             14 LOAD_ATTR                3 (gauss_next)
+             16 BUILD_TUPLE              3
+             18 RETURN_VALUE
+
+Disassembly of lognormvariate:
+433           0 LOAD_GLOBAL              0 (_exp)
+              2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              1 (normalvariate)
+              6 LOAD_FAST                1 (mu)
+              8 LOAD_FAST                2 (sigma)
+             10 CALL_METHOD              2
+             12 CALL_FUNCTION            1
+             14 RETURN_VALUE
+
+Disassembly of normalvariate:
+413           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_FAST               3 (random)
+
+414           6 SETUP_LOOP              64 (to 72)
+
+415     >>    8 LOAD_FAST                3 (random)
+             10 CALL_FUNCTION            0
+             12 STORE_FAST               4 (u1)
+
+416          14 LOAD_CONST               1 (1.0)
+             16 LOAD_FAST                3 (random)
+             18 CALL_FUNCTION            0
+             20 BINARY_SUBTRACT
+             22 STORE_FAST               5 (u2)
+
+417          24 LOAD_GLOBAL              1 (NV_MAGICCONST)
+             26 LOAD_FAST                4 (u1)
+             28 LOAD_CONST               2 (0.5)
+             30 BINARY_SUBTRACT
+             32 BINARY_MULTIPLY
+             34 LOAD_FAST                5 (u2)
+             36 BINARY_TRUE_DIVIDE
+             38 STORE_FAST               6 (z)
+
+418          40 LOAD_FAST                6 (z)
+             42 LOAD_FAST                6 (z)
+             44 BINARY_MULTIPLY
+             46 LOAD_CONST               3 (4.0)
+             48 BINARY_TRUE_DIVIDE
+             50 STORE_FAST               7 (zz)
+
+419          52 LOAD_FAST                7 (zz)
+             54 LOAD_GLOBAL              2 (_log)
+             56 LOAD_FAST                5 (u2)
+             58 CALL_FUNCTION            1
+             60 UNARY_NEGATIVE
+             62 COMPARE_OP               1 (<=)
+             64 POP_JUMP_IF_FALSE        8
+
+420          66 BREAK_LOOP
+             68 JUMP_ABSOLUTE            8
+             70 POP_BLOCK
+
+421     >>   72 LOAD_FAST                1 (mu)
+             74 LOAD_FAST                6 (z)
+             76 LOAD_FAST                2 (sigma)
+             78 BINARY_MULTIPLY
+             80 BINARY_ADD
+             82 RETURN_VALUE
+
+Disassembly of paretovariate:
+651           0 LOAD_CONST               1 (1.0)
+              2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              0 (random)
+              6 CALL_METHOD              0
+              8 BINARY_SUBTRACT
+             10 STORE_FAST               2 (u)
+
+652          12 LOAD_CONST               1 (1.0)
+             14 LOAD_FAST                2 (u)
+             16 LOAD_CONST               1 (1.0)
+             18 LOAD_FAST                1 (alpha)
+             20 BINARY_TRUE_DIVIDE
+             22 BINARY_POWER
+             24 BINARY_TRUE_DIVIDE
+             26 RETURN_VALUE
+
+Disassembly of randint:
+222           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (randrange)
+              4 LOAD_FAST                1 (a)
+              6 LOAD_FAST                2 (b)
+              8 LOAD_CONST               1 (1)
+             10 BINARY_ADD
+             12 CALL_METHOD              2
+             14 RETURN_VALUE
+
+Disassembly of randrange:
+184           0 LOAD_FAST                4 (_int)
+              2 LOAD_FAST                1 (start)
+              4 CALL_FUNCTION            1
+              6 STORE_FAST               5 (istart)
+
+185           8 LOAD_FAST                5 (istart)
+             10 LOAD_FAST                1 (start)
+             12 COMPARE_OP               3 (!=)
+             14 POP_JUMP_IF_FALSE       24
+
+186          16 LOAD_GLOBAL              0 (ValueError)
+             18 LOAD_CONST               1 ('non-integer arg 1 for randrange()')
+             20 CALL_FUNCTION            1
+             22 RAISE_VARARGS            1
+
+187     >>   24 LOAD_FAST                2 (stop)
+             26 LOAD_CONST               2 (None)
+             28 COMPARE_OP               8 (is)
+             30 POP_JUMP_IF_FALSE       58
+
+188          32 LOAD_FAST                5 (istart)
+             34 LOAD_CONST               3 (0)
+             36 COMPARE_OP               4 (>)
+             38 POP_JUMP_IF_FALSE       50
+
+189          40 LOAD_FAST                0 (self)
+             42 LOAD_METHOD              1 (_randbelow)
+             44 LOAD_FAST                5 (istart)
+             46 CALL_METHOD              1
+             48 RETURN_VALUE
+
+190     >>   50 LOAD_GLOBAL              0 (ValueError)
+             52 LOAD_CONST               4 ('empty range for randrange()')
+             54 CALL_FUNCTION            1
+             56 RAISE_VARARGS            1
+
+193     >>   58 LOAD_FAST                4 (_int)
+             60 LOAD_FAST                2 (stop)
+             62 CALL_FUNCTION            1
+             64 STORE_FAST               6 (istop)
+
+194          66 LOAD_FAST                6 (istop)
+             68 LOAD_FAST                2 (stop)
+             70 COMPARE_OP               3 (!=)
+             72 POP_JUMP_IF_FALSE       82
+
+195          74 LOAD_GLOBAL              0 (ValueError)
+             76 LOAD_CONST               5 ('non-integer stop for randrange()')
+             78 CALL_FUNCTION            1
+             80 RAISE_VARARGS            1
+
+196     >>   82 LOAD_FAST                6 (istop)
+             84 LOAD_FAST                5 (istart)
+             86 BINARY_SUBTRACT
+             88 STORE_FAST               7 (width)
+
+197          90 LOAD_FAST                3 (step)
+             92 LOAD_CONST               6 (1)
+             94 COMPARE_OP               2 (==)
+             96 POP_JUMP_IF_FALSE      120
+             98 LOAD_FAST                7 (width)
+            100 LOAD_CONST               3 (0)
+            102 COMPARE_OP               4 (>)
+            104 POP_JUMP_IF_FALSE      120
+
+198         106 LOAD_FAST                5 (istart)
+            108 LOAD_FAST                0 (self)
+            110 LOAD_METHOD              1 (_randbelow)
+            112 LOAD_FAST                7 (width)
+            114 CALL_METHOD              1
+            116 BINARY_ADD
+            118 RETURN_VALUE
+
+199     >>  120 LOAD_FAST                3 (step)
+            122 LOAD_CONST               6 (1)
+            124 COMPARE_OP               2 (==)
+            126 POP_JUMP_IF_FALSE      146
+
+200         128 LOAD_GLOBAL              0 (ValueError)
+            130 LOAD_CONST               7 ('empty range for randrange() (%d,%d, %d)')
+            132 LOAD_FAST                5 (istart)
+            134 LOAD_FAST                6 (istop)
+            136 LOAD_FAST                7 (width)
+            138 BUILD_TUPLE              3
+            140 BINARY_MODULO
+            142 CALL_FUNCTION            1
+            144 RAISE_VARARGS            1
+
+203     >>  146 LOAD_FAST                4 (_int)
+            148 LOAD_FAST                3 (step)
+            150 CALL_FUNCTION            1
+            152 STORE_FAST               8 (istep)
+
+204         154 LOAD_FAST                8 (istep)
+            156 LOAD_FAST                3 (step)
+            158 COMPARE_OP               3 (!=)
+            160 POP_JUMP_IF_FALSE      170
+
+205         162 LOAD_GLOBAL              0 (ValueError)
+            164 LOAD_CONST               8 ('non-integer step for randrange()')
+            166 CALL_FUNCTION            1
+            168 RAISE_VARARGS            1
+
+206     >>  170 LOAD_FAST                8 (istep)
+            172 LOAD_CONST               3 (0)
+            174 COMPARE_OP               4 (>)
+            176 POP_JUMP_IF_FALSE      196
+
+207         178 LOAD_FAST                7 (width)
+            180 LOAD_FAST                8 (istep)
+            182 BINARY_ADD
+            184 LOAD_CONST               6 (1)
+            186 BINARY_SUBTRACT
+            188 LOAD_FAST                8 (istep)
+            190 BINARY_FLOOR_DIVIDE
+            192 STORE_FAST               9 (n)
+            194 JUMP_FORWARD            34 (to 230)
+
+208     >>  196 LOAD_FAST                8 (istep)
+            198 LOAD_CONST               3 (0)
+            200 COMPARE_OP               0 (<)
+            202 POP_JUMP_IF_FALSE      222
+
+209         204 LOAD_FAST                7 (width)
+            206 LOAD_FAST                8 (istep)
+            208 BINARY_ADD
+            210 LOAD_CONST               6 (1)
+            212 BINARY_ADD
+            214 LOAD_FAST                8 (istep)
+            216 BINARY_FLOOR_DIVIDE
+            218 STORE_FAST               9 (n)
+            220 JUMP_FORWARD             8 (to 230)
+
+211     >>  222 LOAD_GLOBAL              0 (ValueError)
+            224 LOAD_CONST               9 ('zero step for randrange()')
+            226 CALL_FUNCTION            1
+            228 RAISE_VARARGS            1
+
+213     >>  230 LOAD_FAST                9 (n)
+            232 LOAD_CONST               3 (0)
+            234 COMPARE_OP               1 (<=)
+            236 POP_JUMP_IF_FALSE      246
+
+214         238 LOAD_GLOBAL              0 (ValueError)
+            240 LOAD_CONST               4 ('empty range for randrange()')
+            242 CALL_FUNCTION            1
+            244 RAISE_VARARGS            1
+
+216     >>  246 LOAD_FAST                5 (istart)
+            248 LOAD_FAST                8 (istep)
+            250 LOAD_FAST                0 (self)
+            252 LOAD_METHOD              1 (_randbelow)
+            254 LOAD_FAST                9 (n)
+            256 CALL_METHOD              1
+            258 BINARY_MULTIPLY
+            260 BINARY_ADD
+            262 RETURN_VALUE
+
+Disassembly of sample:
+314           0 LOAD_GLOBAL              0 (isinstance)
+              2 LOAD_FAST                1 (population)
+              4 LOAD_GLOBAL              1 (_Set)
+              6 CALL_FUNCTION            2
+              8 POP_JUMP_IF_FALSE       18
+
+315          10 LOAD_GLOBAL              2 (tuple)
+             12 LOAD_FAST                1 (population)
+             14 CALL_FUNCTION            1
+             16 STORE_FAST               1 (population)
+
+316     >>   18 LOAD_GLOBAL              0 (isinstance)
+             20 LOAD_FAST                1 (population)
+             22 LOAD_GLOBAL              3 (_Sequence)
+             24 CALL_FUNCTION            2
+             26 POP_JUMP_IF_TRUE        36
+
+317          28 LOAD_GLOBAL              4 (TypeError)
+             30 LOAD_CONST               1 ('Population must be a sequence or set.  For dicts, use list(d).')
+             32 CALL_FUNCTION            1
+             34 RAISE_VARARGS            1
+
+318     >>   36 LOAD_FAST                0 (self)
+             38 LOAD_ATTR                5 (_randbelow)
+             40 STORE_FAST               3 (randbelow)
+
+319          42 LOAD_GLOBAL              6 (len)
+             44 LOAD_FAST                1 (population)
+             46 CALL_FUNCTION            1
+             48 STORE_FAST               4 (n)
+
+320          50 LOAD_CONST               2 (0)
+             52 LOAD_FAST                2 (k)
+             54 DUP_TOP
+             56 ROT_THREE
+             58 COMPARE_OP               1 (<=)
+             60 POP_JUMP_IF_FALSE       70
+             62 LOAD_FAST                4 (n)
+             64 COMPARE_OP               1 (<=)
+             66 POP_JUMP_IF_TRUE        80
+             68 JUMP_FORWARD             2 (to 72)
+        >>   70 POP_TOP
+
+321     >>   72 LOAD_GLOBAL              7 (ValueError)
+             74 LOAD_CONST               3 ('Sample larger than population or is negative')
+             76 CALL_FUNCTION            1
+             78 RAISE_VARARGS            1
+
+322     >>   80 LOAD_CONST               4 (None)
+             82 BUILD_LIST               1
+             84 LOAD_FAST                2 (k)
+             86 BINARY_MULTIPLY
+             88 STORE_FAST               5 (result)
+
+323          90 LOAD_CONST               5 (21)
+             92 STORE_FAST               6 (setsize)
+
+324          94 LOAD_FAST                2 (k)
+             96 LOAD_CONST               6 (5)
+             98 COMPARE_OP               4 (>)
+            100 POP_JUMP_IF_FALSE      128
+
+325         102 LOAD_FAST                6 (setsize)
+            104 LOAD_CONST               7 (4)
+            106 LOAD_GLOBAL              8 (_ceil)
+            108 LOAD_GLOBAL              9 (_log)
+            110 LOAD_FAST                2 (k)
+            112 LOAD_CONST               8 (3)
+            114 BINARY_MULTIPLY
+            116 LOAD_CONST               7 (4)
+            118 CALL_FUNCTION            2
+            120 CALL_FUNCTION            1
+            122 BINARY_POWER
+            124 INPLACE_ADD
+            126 STORE_FAST               6 (setsize)
+
+326     >>  128 LOAD_FAST                4 (n)
+            130 LOAD_FAST                6 (setsize)
+            132 COMPARE_OP               1 (<=)
+            134 POP_JUMP_IF_FALSE      208
+
+328         136 LOAD_GLOBAL             10 (list)
+            138 LOAD_FAST                1 (population)
+            140 CALL_FUNCTION            1
+            142 STORE_FAST               7 (pool)
+
+329         144 SETUP_LOOP             144 (to 290)
+            146 LOAD_GLOBAL             11 (range)
+            148 LOAD_FAST                2 (k)
+            150 CALL_FUNCTION            1
+            152 GET_ITER
+        >>  154 FOR_ITER                48 (to 204)
+            156 STORE_FAST               8 (i)
+
+330         158 LOAD_FAST                3 (randbelow)
+            160 LOAD_FAST                4 (n)
+            162 LOAD_FAST                8 (i)
+            164 BINARY_SUBTRACT
+            166 CALL_FUNCTION            1
+            168 STORE_FAST               9 (j)
+
+331         170 LOAD_FAST                7 (pool)
+            172 LOAD_FAST                9 (j)
+            174 BINARY_SUBSCR
+            176 LOAD_FAST                5 (result)
+            178 LOAD_FAST                8 (i)
+            180 STORE_SUBSCR
+
+332         182 LOAD_FAST                7 (pool)
+            184 LOAD_FAST                4 (n)
+            186 LOAD_FAST                8 (i)
+            188 BINARY_SUBTRACT
+            190 LOAD_CONST               9 (1)
+            192 BINARY_SUBTRACT
+            194 BINARY_SUBSCR
+            196 LOAD_FAST                7 (pool)
+            198 LOAD_FAST                9 (j)
+            200 STORE_SUBSCR
+            202 JUMP_ABSOLUTE          154
+        >>  204 POP_BLOCK
+            206 JUMP_FORWARD            82 (to 290)
+
+334     >>  208 LOAD_GLOBAL             12 (set)
+            210 CALL_FUNCTION            0
+            212 STORE_FAST              10 (selected)
+
+335         214 LOAD_FAST               10 (selected)
+            216 LOAD_ATTR               13 (add)
+            218 STORE_FAST              11 (selected_add)
+
+336         220 SETUP_LOOP              68 (to 290)
+            222 LOAD_GLOBAL             11 (range)
+            224 LOAD_FAST                2 (k)
+            226 CALL_FUNCTION            1
+            228 GET_ITER
+        >>  230 FOR_ITER                56 (to 288)
+            232 STORE_FAST               8 (i)
+
+337         234 LOAD_FAST                3 (randbelow)
+            236 LOAD_FAST                4 (n)
+            238 CALL_FUNCTION            1
+            240 STORE_FAST               9 (j)
+
+338         242 SETUP_LOOP              22 (to 266)
+        >>  244 LOAD_FAST                9 (j)
+            246 LOAD_FAST               10 (selected)
+            248 COMPARE_OP               6 (in)
+            250 EXTENDED_ARG             1
+            252 POP_JUMP_IF_FALSE      264
+
+339         254 LOAD_FAST                3 (randbelow)
+            256 LOAD_FAST                4 (n)
+            258 CALL_FUNCTION            1
+            260 STORE_FAST               9 (j)
+            262 JUMP_ABSOLUTE          244
+        >>  264 POP_BLOCK
+
+340     >>  266 LOAD_FAST               11 (selected_add)
+            268 LOAD_FAST                9 (j)
+            270 CALL_FUNCTION            1
+            272 POP_TOP
+
+341         274 LOAD_FAST                1 (population)
+            276 LOAD_FAST                9 (j)
+            278 BINARY_SUBSCR
+            280 LOAD_FAST                5 (result)
+            282 LOAD_FAST                8 (i)
+            284 STORE_SUBSCR
+            286 JUMP_ABSOLUTE          230
+        >>  288 POP_BLOCK
+
+342     >>  290 LOAD_FAST                5 (result)
+            292 RETURN_VALUE
+
+Disassembly of seed:
+112           0 LOAD_FAST                2 (version)
+              2 LOAD_CONST               1 (1)
+              4 COMPARE_OP               2 (==)
+              6 POP_JUMP_IF_FALSE      134
+              8 LOAD_GLOBAL              0 (isinstance)
+             10 LOAD_FAST                1 (a)
+             12 LOAD_GLOBAL              1 (str)
+             14 LOAD_GLOBAL              2 (bytes)
+             16 BUILD_TUPLE              2
+             18 CALL_FUNCTION            2
+             20 POP_JUMP_IF_FALSE      134
+
+113          22 LOAD_GLOBAL              0 (isinstance)
+             24 LOAD_FAST                1 (a)
+             26 LOAD_GLOBAL              2 (bytes)
+             28 CALL_FUNCTION            2
+             30 POP_JUMP_IF_FALSE       42
+             32 LOAD_FAST                1 (a)
+             34 LOAD_METHOD              3 (decode)
+             36 LOAD_CONST               2 ('latin-1')
+             38 CALL_METHOD              1
+             40 JUMP_FORWARD             2 (to 44)
+        >>   42 LOAD_FAST                1 (a)
+        >>   44 STORE_FAST               1 (a)
+
+114          46 LOAD_FAST                1 (a)
+             48 POP_JUMP_IF_FALSE       66
+             50 LOAD_GLOBAL              4 (ord)
+             52 LOAD_FAST                1 (a)
+             54 LOAD_CONST               3 (0)
+             56 BINARY_SUBSCR
+             58 CALL_FUNCTION            1
+             60 LOAD_CONST               4 (7)
+             62 BINARY_LSHIFT
+             64 JUMP_FORWARD             2 (to 68)
+        >>   66 LOAD_CONST               3 (0)
+        >>   68 STORE_FAST               3 (x)
+
+115          70 SETUP_LOOP              34 (to 106)
+             72 LOAD_GLOBAL              5 (map)
+             74 LOAD_GLOBAL              4 (ord)
+             76 LOAD_FAST                1 (a)
+             78 CALL_FUNCTION            2
+             80 GET_ITER
+        >>   82 FOR_ITER                20 (to 104)
+             84 STORE_FAST               4 (c)
+
+116          86 LOAD_CONST               5 (1000003)
+             88 LOAD_FAST                3 (x)
+             90 BINARY_MULTIPLY
+             92 LOAD_FAST                4 (c)
+             94 BINARY_XOR
+             96 LOAD_CONST               6 (18446744073709551615)
+             98 BINARY_AND
+            100 STORE_FAST               3 (x)
+            102 JUMP_ABSOLUTE           82
+        >>  104 POP_BLOCK
+
+117     >>  106 LOAD_FAST                3 (x)
+            108 LOAD_GLOBAL              6 (len)
+            110 LOAD_FAST                1 (a)
+            112 CALL_FUNCTION            1
+            114 INPLACE_XOR
+            116 STORE_FAST               3 (x)
+
+118         118 LOAD_FAST                3 (x)
+            120 LOAD_CONST               7 (-1)
+            122 COMPARE_OP               2 (==)
+            124 POP_JUMP_IF_FALSE      130
+            126 LOAD_CONST               8 (-2)
+            128 JUMP_FORWARD             2 (to 132)
+        >>  130 LOAD_FAST                3 (x)
+        >>  132 STORE_FAST               1 (a)
+
+120     >>  134 LOAD_FAST                2 (version)
+            136 LOAD_CONST               9 (2)
+            138 COMPARE_OP               2 (==)
+            140 POP_JUMP_IF_FALSE      204
+            142 LOAD_GLOBAL              0 (isinstance)
+            144 LOAD_FAST                1 (a)
+            146 LOAD_GLOBAL              1 (str)
+            148 LOAD_GLOBAL              2 (bytes)
+            150 LOAD_GLOBAL              7 (bytearray)
+            152 BUILD_TUPLE              3
+            154 CALL_FUNCTION            2
+            156 POP_JUMP_IF_FALSE      204
+
+121         158 LOAD_GLOBAL              0 (isinstance)
+            160 LOAD_FAST                1 (a)
+            162 LOAD_GLOBAL              1 (str)
+            164 CALL_FUNCTION            2
+            166 POP_JUMP_IF_FALSE      176
+
+122         168 LOAD_FAST                1 (a)
+            170 LOAD_METHOD              8 (encode)
+            172 CALL_METHOD              0
+            174 STORE_FAST               1 (a)
+
+123     >>  176 LOAD_FAST                1 (a)
+            178 LOAD_GLOBAL              9 (_sha512)
+            180 LOAD_FAST                1 (a)
+            182 CALL_FUNCTION            1
+            184 LOAD_METHOD             10 (digest)
+            186 CALL_METHOD              0
+            188 INPLACE_ADD
+            190 STORE_FAST               1 (a)
+
+124         192 LOAD_GLOBAL             11 (int)
+            194 LOAD_METHOD             12 (from_bytes)
+            196 LOAD_FAST                1 (a)
+            198 LOAD_CONST              10 ('big')
+            200 CALL_METHOD              2
+            202 STORE_FAST               1 (a)
+
+126     >>  204 LOAD_GLOBAL             13 (super)
+            206 CALL_FUNCTION            0
+            208 LOAD_METHOD             14 (seed)
+            210 LOAD_FAST                1 (a)
+            212 CALL_METHOD              1
+            214 POP_TOP
+
+127         216 LOAD_CONST              11 (None)
+            218 LOAD_FAST                0 (self)
+            220 STORE_ATTR              15 (gauss_next)
+            222 LOAD_CONST              11 (None)
+            224 RETURN_VALUE
+
+Disassembly of setstate:
+135           0 LOAD_FAST                1 (state)
+              2 LOAD_CONST               1 (0)
+              4 BINARY_SUBSCR
+              6 STORE_FAST               2 (version)
+
+136           8 LOAD_FAST                2 (version)
+             10 LOAD_CONST               2 (3)
+             12 COMPARE_OP               2 (==)
+             14 POP_JUMP_IF_FALSE       42
+
+137          16 LOAD_FAST                1 (state)
+             18 UNPACK_SEQUENCE          3
+             20 STORE_FAST               2 (version)
+             22 STORE_FAST               3 (internalstate)
+             24 LOAD_FAST                0 (self)
+             26 STORE_ATTR               0 (gauss_next)
+
+138          28 LOAD_GLOBAL              1 (super)
+             30 CALL_FUNCTION            0
+             32 LOAD_METHOD              2 (setstate)
+             34 LOAD_FAST                3 (internalstate)
+             36 CALL_METHOD              1
+             38 POP_TOP
+             40 JUMP_FORWARD           116 (to 158)
+
+139     >>   42 LOAD_FAST                2 (version)
+             44 LOAD_CONST               3 (2)
+             46 COMPARE_OP               2 (==)
+             48 POP_JUMP_IF_FALSE      140
+
+140          50 LOAD_FAST                1 (state)
+             52 UNPACK_SEQUENCE          3
+             54 STORE_FAST               2 (version)
+             56 STORE_FAST               3 (internalstate)
+             58 LOAD_FAST                0 (self)
+             60 STORE_ATTR               0 (gauss_next)
+
+145          62 SETUP_EXCEPT            22 (to 86)
+
+146          64 LOAD_GLOBAL              3 (tuple)
+             66 LOAD_CONST               4 (<code object <genexpr> at 0x000001B959A335D0, file "C:\Program Files\Python37\lib\random.py", line 146>)
+             68 LOAD_CONST               5 ('Random.setstate.<locals>.<genexpr>')
+             70 MAKE_FUNCTION            0
+             72 LOAD_FAST                3 (internalstate)
+             74 GET_ITER
+             76 CALL_FUNCTION            1
+             78 CALL_FUNCTION            1
+             80 STORE_FAST               3 (internalstate)
+             82 POP_BLOCK
+             84 JUMP_FORWARD            40 (to 126)
+
+147     >>   86 DUP_TOP
+             88 LOAD_GLOBAL              4 (ValueError)
+             90 COMPARE_OP              10 (exception match)
+             92 POP_JUMP_IF_FALSE      124
+             94 POP_TOP
+             96 STORE_FAST               4 (e)
+             98 POP_TOP
+            100 SETUP_FINALLY           10 (to 112)
+
+148         102 LOAD_GLOBAL              5 (TypeError)
+            104 LOAD_FAST                4 (e)
+            106 RAISE_VARARGS            2
+            108 POP_BLOCK
+            110 LOAD_CONST               6 (None)
+        >>  112 LOAD_CONST               6 (None)
+            114 STORE_FAST               4 (e)
+            116 DELETE_FAST              4 (e)
+            118 END_FINALLY
+            120 POP_EXCEPT
+            122 JUMP_FORWARD             2 (to 126)
+        >>  124 END_FINALLY
+
+149     >>  126 LOAD_GLOBAL              1 (super)
+            128 CALL_FUNCTION            0
+            130 LOAD_METHOD              2 (setstate)
+            132 LOAD_FAST                3 (internalstate)
+            134 CALL_METHOD              1
+            136 POP_TOP
+            138 JUMP_FORWARD            18 (to 158)
+
+151     >>  140 LOAD_GLOBAL              4 (ValueError)
+            142 LOAD_CONST               7 ('state with version %s passed to Random.setstate() of version %s')
+
+153         144 LOAD_FAST                2 (version)
+            146 LOAD_FAST                0 (self)
+            148 LOAD_ATTR                6 (VERSION)
+            150 BUILD_TUPLE              2
+            152 BINARY_MODULO
+            154 CALL_FUNCTION            1
+            156 RAISE_VARARGS            1
+        >>  158 LOAD_CONST               6 (None)
+            160 RETURN_VALUE
+
+Disassembly of <code object <genexpr> at 0x000001B959A335D0, file "C:\Program Files\Python37\lib\random.py", line 146>:
+146           0 LOAD_FAST                0 (.0)
+        >>    2 FOR_ITER                14 (to 18)
+              4 STORE_FAST               1 (x)
+              6 LOAD_FAST                1 (x)
+              8 LOAD_CONST               0 (4294967296)
+             10 BINARY_MODULO
+             12 YIELD_VALUE
+             14 POP_TOP
+             16 JUMP_ABSOLUTE            2
+        >>   18 LOAD_CONST               1 (None)
+             20 RETURN_VALUE
+
+Disassembly of shuffle:
+273           0 LOAD_FAST                2 (random)
+              2 LOAD_CONST               1 (None)
+              4 COMPARE_OP               8 (is)
+              6 POP_JUMP_IF_FALSE       82
+
+274           8 LOAD_FAST                0 (self)
+             10 LOAD_ATTR                0 (_randbelow)
+             12 STORE_FAST               3 (randbelow)
+
+275          14 SETUP_LOOP             142 (to 158)
+             16 LOAD_GLOBAL              1 (reversed)
+             18 LOAD_GLOBAL              2 (range)
+             20 LOAD_CONST               2 (1)
+             22 LOAD_GLOBAL              3 (len)
+             24 LOAD_FAST                1 (x)
+             26 CALL_FUNCTION            1
+             28 CALL_FUNCTION            2
+             30 CALL_FUNCTION            1
+             32 GET_ITER
+        >>   34 FOR_ITER                42 (to 78)
+             36 STORE_FAST               4 (i)
+
+277          38 LOAD_FAST                3 (randbelow)
+             40 LOAD_FAST                4 (i)
+             42 LOAD_CONST               2 (1)
+             44 BINARY_ADD
+             46 CALL_FUNCTION            1
+             48 STORE_FAST               5 (j)
+
+278          50 LOAD_FAST                1 (x)
+             52 LOAD_FAST                5 (j)
+             54 BINARY_SUBSCR
+             56 LOAD_FAST                1 (x)
+             58 LOAD_FAST                4 (i)
+             60 BINARY_SUBSCR
+             62 ROT_TWO
+             64 LOAD_FAST                1 (x)
+             66 LOAD_FAST                4 (i)
+             68 STORE_SUBSCR
+             70 LOAD_FAST                1 (x)
+             72 LOAD_FAST                5 (j)
+             74 STORE_SUBSCR
+             76 JUMP_ABSOLUTE           34
+        >>   78 POP_BLOCK
+             80 JUMP_FORWARD            76 (to 158)
+
+280     >>   82 LOAD_GLOBAL              4 (int)
+             84 STORE_FAST               6 (_int)
+
+281          86 SETUP_LOOP              70 (to 158)
+             88 LOAD_GLOBAL              1 (reversed)
+             90 LOAD_GLOBAL              2 (range)
+             92 LOAD_CONST               2 (1)
+             94 LOAD_GLOBAL              3 (len)
+             96 LOAD_FAST                1 (x)
+             98 CALL_FUNCTION            1
+            100 CALL_FUNCTION            2
+            102 CALL_FUNCTION            1
+            104 GET_ITER
+        >>  106 FOR_ITER                48 (to 156)
+            108 STORE_FAST               4 (i)
+
+283         110 LOAD_FAST                6 (_int)
+            112 LOAD_FAST                2 (random)
+            114 CALL_FUNCTION            0
+            116 LOAD_FAST                4 (i)
+            118 LOAD_CONST               2 (1)
+            120 BINARY_ADD
+            122 BINARY_MULTIPLY
+            124 CALL_FUNCTION            1
+            126 STORE_FAST               5 (j)
+
+284         128 LOAD_FAST                1 (x)
+            130 LOAD_FAST                5 (j)
+            132 BINARY_SUBSCR
+            134 LOAD_FAST                1 (x)
+            136 LOAD_FAST                4 (i)
+            138 BINARY_SUBSCR
+            140 ROT_TWO
+            142 LOAD_FAST                1 (x)
+            144 LOAD_FAST                4 (i)
+            146 STORE_SUBSCR
+            148 LOAD_FAST                1 (x)
+            150 LOAD_FAST                5 (j)
+            152 STORE_SUBSCR
+            154 JUMP_ABSOLUTE          106
+        >>  156 POP_BLOCK
+        >>  158 LOAD_CONST               1 (None)
+            160 RETURN_VALUE
+
+Disassembly of triangular:
+387           0 LOAD_FAST                0 (self)
+              2 LOAD_METHOD              0 (random)
+              4 CALL_METHOD              0
+              6 STORE_FAST               4 (u)
+
+388           8 SETUP_EXCEPT            32 (to 42)
+
+389          10 LOAD_FAST                3 (mode)
+             12 LOAD_CONST               1 (None)
+             14 COMPARE_OP               8 (is)
+             16 POP_JUMP_IF_FALSE       22
+             18 LOAD_CONST               2 (0.5)
+             20 JUMP_FORWARD            14 (to 36)
+        >>   22 LOAD_FAST                3 (mode)
+             24 LOAD_FAST                1 (low)
+             26 BINARY_SUBTRACT
+             28 LOAD_FAST                2 (high)
+             30 LOAD_FAST                1 (low)
+             32 BINARY_SUBTRACT
+             34 BINARY_TRUE_DIVIDE
+        >>   36 STORE_FAST               5 (c)
+             38 POP_BLOCK
+             40 JUMP_FORWARD            20 (to 62)
+
+390     >>   42 DUP_TOP
+             44 LOAD_GLOBAL              1 (ZeroDivisionError)
+             46 COMPARE_OP              10 (exception match)
+             48 POP_JUMP_IF_FALSE       60
+             50 POP_TOP
+             52 POP_TOP
+             54 POP_TOP
+
+391          56 LOAD_FAST                1 (low)
+             58 RETURN_VALUE
+        >>   60 END_FINALLY
+
+392     >>   62 LOAD_FAST                4 (u)
+             64 LOAD_FAST                5 (c)
+             66 COMPARE_OP               4 (>)
+             68 POP_JUMP_IF_FALSE       96
+
+393          70 LOAD_CONST               3 (1.0)
+             72 LOAD_FAST                4 (u)
+             74 BINARY_SUBTRACT
+             76 STORE_FAST               4 (u)
+
+394          78 LOAD_CONST               3 (1.0)
+             80 LOAD_FAST                5 (c)
+             82 BINARY_SUBTRACT
+             84 STORE_FAST               5 (c)
+
+395          86 LOAD_FAST                2 (high)
+             88 LOAD_FAST                1 (low)
+             90 ROT_TWO
+             92 STORE_FAST               1 (low)
+             94 STORE_FAST               2 (high)
+
+396     >>   96 LOAD_FAST                1 (low)
+             98 LOAD_FAST                2 (high)
+            100 LOAD_FAST                1 (low)
+            102 BINARY_SUBTRACT
+            104 LOAD_GLOBAL              2 (_sqrt)
+            106 LOAD_FAST                4 (u)
+            108 LOAD_FAST                5 (c)
+            110 BINARY_MULTIPLY
+            112 CALL_FUNCTION            1
+            114 BINARY_MULTIPLY
+            116 BINARY_ADD
+            118 RETURN_VALUE
+
+Disassembly of uniform:
+374           0 LOAD_FAST                1 (a)
+              2 LOAD_FAST                2 (b)
+              4 LOAD_FAST                1 (a)
+              6 BINARY_SUBTRACT
+              8 LOAD_FAST                0 (self)
+             10 LOAD_METHOD              0 (random)
+             12 CALL_METHOD              0
+             14 BINARY_MULTIPLY
+             16 BINARY_ADD
+             18 RETURN_VALUE
+
+Disassembly of vonmisesvariate:
+476           0 LOAD_FAST                0 (self)
+              2 LOAD_ATTR                0 (random)
+              4 STORE_FAST               3 (random)
+
+477           6 LOAD_FAST                2 (kappa)
+              8 LOAD_CONST               1 (1e-06)
+             10 COMPARE_OP               1 (<=)
+             12 POP_JUMP_IF_FALSE       24
+
+478          14 LOAD_GLOBAL              1 (TWOPI)
+             16 LOAD_FAST                3 (random)
+             18 CALL_FUNCTION            0
+             20 BINARY_MULTIPLY
+             22 RETURN_VALUE
+
+480     >>   24 LOAD_CONST               2 (0.5)
+             26 LOAD_FAST                2 (kappa)
+             28 BINARY_TRUE_DIVIDE
+             30 STORE_FAST               4 (s)
+
+481          32 LOAD_FAST                4 (s)
+             34 LOAD_GLOBAL              2 (_sqrt)
+             36 LOAD_CONST               3 (1.0)
+             38 LOAD_FAST                4 (s)
+             40 LOAD_FAST                4 (s)
+             42 BINARY_MULTIPLY
+             44 BINARY_ADD
+             46 CALL_FUNCTION            1
+             48 BINARY_ADD
+             50 STORE_FAST               5 (r)
+
+483          52 SETUP_LOOP              78 (to 132)
+
+484     >>   54 LOAD_FAST                3 (random)
+             56 CALL_FUNCTION            0
+             58 STORE_FAST               6 (u1)
+
+485          60 LOAD_GLOBAL              3 (_cos)
+             62 LOAD_GLOBAL              4 (_pi)
+             64 LOAD_FAST                6 (u1)
+             66 BINARY_MULTIPLY
+             68 CALL_FUNCTION            1
+             70 STORE_FAST               7 (z)
+
+487          72 LOAD_FAST                7 (z)
+             74 LOAD_FAST                5 (r)
+             76 LOAD_FAST                7 (z)
+             78 BINARY_ADD
+             80 BINARY_TRUE_DIVIDE
+             82 STORE_FAST               8 (d)
+
+488          84 LOAD_FAST                3 (random)
+             86 CALL_FUNCTION            0
+             88 STORE_FAST               9 (u2)
+
+489          90 LOAD_FAST                9 (u2)
+             92 LOAD_CONST               3 (1.0)
+             94 LOAD_FAST                8 (d)
+             96 LOAD_FAST                8 (d)
+             98 BINARY_MULTIPLY
+            100 BINARY_SUBTRACT
+            102 COMPARE_OP               0 (<)
+            104 POP_JUMP_IF_TRUE       126
+            106 LOAD_FAST                9 (u2)
+            108 LOAD_CONST               3 (1.0)
+            110 LOAD_FAST                8 (d)
+            112 BINARY_SUBTRACT
+            114 LOAD_GLOBAL              5 (_exp)
+            116 LOAD_FAST                8 (d)
+            118 CALL_FUNCTION            1
+            120 BINARY_MULTIPLY
+            122 COMPARE_OP               1 (<=)
+            124 POP_JUMP_IF_FALSE       54
+
+490     >>  126 BREAK_LOOP
+            128 JUMP_ABSOLUTE           54
+            130 POP_BLOCK
+
+492     >>  132 LOAD_CONST               3 (1.0)
+            134 LOAD_FAST                5 (r)
+            136 BINARY_TRUE_DIVIDE
+            138 STORE_FAST              10 (q)
+
+493         140 LOAD_FAST               10 (q)
+            142 LOAD_FAST                7 (z)
+            144 BINARY_ADD
+            146 LOAD_CONST               3 (1.0)
+            148 LOAD_FAST               10 (q)
+            150 LOAD_FAST                7 (z)
+            152 BINARY_MULTIPLY
+            154 BINARY_ADD
+            156 BINARY_TRUE_DIVIDE
+            158 STORE_FAST              11 (f)
+
+494         160 LOAD_FAST                3 (random)
+            162 CALL_FUNCTION            0
+            164 STORE_FAST              12 (u3)
+
+495         166 LOAD_FAST               12 (u3)
+            168 LOAD_CONST               2 (0.5)
+            170 COMPARE_OP               4 (>)
+            172 POP_JUMP_IF_FALSE      192
+
+496         174 LOAD_FAST                1 (mu)
+            176 LOAD_GLOBAL              6 (_acos)
+            178 LOAD_FAST               11 (f)
+            180 CALL_FUNCTION            1
+            182 BINARY_ADD
+            184 LOAD_GLOBAL              1 (TWOPI)
+            186 BINARY_MODULO
+            188 STORE_FAST              13 (theta)
+            190 JUMP_FORWARD            16 (to 208)
+
+498     >>  192 LOAD_FAST                1 (mu)
+            194 LOAD_GLOBAL              6 (_acos)
+            196 LOAD_FAST               11 (f)
+            198 CALL_FUNCTION            1
+            200 BINARY_SUBTRACT
+            202 LOAD_GLOBAL              1 (TWOPI)
+            204 BINARY_MODULO
+            206 STORE_FAST              13 (theta)
+
+500     >>  208 LOAD_FAST               13 (theta)
+            210 RETURN_VALUE
+
+Disassembly of weibullvariate:
+664           0 LOAD_CONST               1 (1.0)
+              2 LOAD_FAST                0 (self)
+              4 LOAD_METHOD              0 (random)
+              6 CALL_METHOD              0
+              8 BINARY_SUBTRACT
+             10 STORE_FAST               3 (u)
+
+665          12 LOAD_FAST                1 (alpha)
+             14 LOAD_GLOBAL              1 (_log)
+             16 LOAD_FAST                3 (u)
+             18 CALL_FUNCTION            1
+             20 UNARY_NEGATIVE
+             22 LOAD_CONST               1 (1.0)
+             24 LOAD_FAST                2 (beta)
+             26 BINARY_TRUE_DIVIDE
+             28 BINARY_POWER
+             30 BINARY_MULTIPLY
+             32 RETURN_VALUE
+

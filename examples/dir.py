@@ -5,20 +5,18 @@ Module dir.py
 """
 
 
-class X:
+class SomeClass:
     pass
 
 
-Z = dir(X)
-
-
-def XX():
+def SomeFunction():
     pass
 
 
-Z1 = dir(XX())
+classattributes = dir(SomeClass)
+functionattributes = dir(SomeFunction())
 
 if __name__ == "__main__":
     print(__doc__)
-    print(Z,"\n\n",Z1)
-    print(Z[len(Z)-1], "\nPath = ", __file__)
+    print(classattributes, "\n\n", functionattributes)
+    print(classattributes[len(classattributes)-1], "\nPath = ", __file__)
