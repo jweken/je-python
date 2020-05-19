@@ -1,3 +1,5 @@
+from math import *
+from decimal import *
 from random import choices
 
 

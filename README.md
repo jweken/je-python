@@ -29,5 +29,5 @@ Use this workspace for testing python-files.
 
 ### These links do not work on Github
 
-* Look for: [Project in Visual Studio 2017 Pro](<file:///C:\Users\jweke\Source\Repos\2018\python\CppAndPython\CppAndPython.py>)  
+* Look for: [**Project in Visual Studio 2017 Pro**](<file:///C:\Users\jweke\Source\Repos\2018\python\CppAndPython\CppAndPython.py>)  
   ***Warning:*** This project is incomplete.

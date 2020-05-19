@@ -4,4 +4,5 @@ from private.tryout import sinh, cosh
 
 showpaths()
 random_example()
-print(sinh(45)/cosh(45))
+result = sinh(45)/cosh(45)
+print(f'tanh(45) = {result}')

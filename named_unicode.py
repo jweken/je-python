@@ -6,8 +6,9 @@ def random_example():
        of Unicode characters\n
        See also: https://unicode-table.com/en/
 
-       '''
-    print('\nA few named Unicode characters:\n')
+    '''
+    doc = __file__
+    print(f'\nA few named Unicode characters from {doc}:\n')
     lcb = unicodedata.lookup('LEFT CURLY BRACKET')  # "\N{AMPERSAND}"
     atts = unicodedata.lookup('ADDRESSED TO THE SUBJECT')
     solidus = unicodedata.lookup('solidus')
