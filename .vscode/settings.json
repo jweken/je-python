@@ -1,5 +1,4 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.terminal.executeInFileDir": false,
-    "python.pythonPath": "C:\\Program Files\\Python37\\python.exe"
+    "python.terminal.executeInFileDir": false
 }

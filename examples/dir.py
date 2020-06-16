@@ -13,6 +13,8 @@ def SomeFunction():
     pass
 
 
+
+
 classattributes = dir(SomeClass)
 functionattributes = dir(SomeFunction())
 
