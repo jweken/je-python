@@ -5,4 +5,4 @@ import os
 
 print(test.__doc__)
 print(test.squaredemo(100), "\n")
-print('_'*110)
+print('_'*80)
