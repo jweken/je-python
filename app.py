@@ -1,3 +1,6 @@
+import covidtest
+import lib.covid
+
 from named_unicode import random_example
 from paths import showpaths
 from private.tryout import sinh, cosh
