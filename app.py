@@ -1,4 +1,4 @@
-import covidtest
+import tests.covidtest as covidtest
 import lib.covid
 
 from named_unicode import random_example
