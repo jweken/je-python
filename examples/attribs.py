@@ -4,16 +4,21 @@ Module attribs.py
     shows the attributes with dir()
 """
 
-class SomeClass:
-    pass
 
-def SomeFunction():
-    pass
+class SomeClass:
+    """attribs"""
+
+
+def some_function():
+    """SomeFunction"""
+
 
 classattributes = dir(SomeClass)
-functionattributes = dir(SomeFunction())
+functionattributes = dir(some_function())
 
 if __name__ == "__main__":
     print(__doc__)
-    print(f"classattributes of SomeClass: \n{classattributes}\n\nfunctionattributes of SomeFunction:\n{functionattributes}\n")
-    print(f"Last Class-attrib = {classattributes[len(classattributes)-1]}\n\nPath = ", __file__)
+    print(
+        f"classattributes of SomeClass: \n{classattributes}\n\nfunctionattributes of SomeFunction:\n {functionattributes}\n")
+    print(
+        f"Last Class-attrib = {classattributes[len(classattributes)-1]}\n\nPath = ", __file__)
