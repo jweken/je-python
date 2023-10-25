@@ -9,7 +9,7 @@ def random_example():
     '''
     doc = __file__
     print(f'\nA few named Unicode characters from {doc}:\n')
-    lcb = unicodedata.lookup('LEFT CURLY BRACKET')  # "\N{AMPERSAND}"
+    lcb = unicodedata.lookup('LEFT CURLY BRACKET')
     atts = unicodedata.lookup('ADDRESSED TO THE SUBJECT')
     solidus = unicodedata.lookup('solidus')
     uexcl = "\N{percent sign}"
