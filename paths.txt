@@ -1,0 +1,2 @@
+C:\dev\je-python\tests
+C:\dev\je-python\.vscode
