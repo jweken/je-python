@@ -1,3 +1,5 @@
+# This shows ause of thestr() frombuiltins
+
 import math
 slash = '/'
 slashes80 = str(slash*80)
