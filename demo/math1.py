@@ -1,4 +1,4 @@
-# This shows ause of thestr() frombuiltins
+# This shows a use of the str() from builtins
 
 import math
 slash = '/'
